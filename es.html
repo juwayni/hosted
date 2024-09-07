@@ -44,12 +44,14 @@ input {
     padding: 20px;
     background-color: white;
     border-radius: 5px;
-    display: none;
+}
+#wpoem{
+  display:none;
 }
 </style>
 </head>
 <body>
-<h1>Make a Spanish Poem</h1>
+<h1>Generate a Spainish Poem</h1>
 <h2>Select an Even Number (2-20)</h2>
 <div>
 <!-- Generate radio buttons dynamically -->
@@ -69,18 +71,18 @@ input {
    <input type="button" value="Submit" id="submit" onclick="generatePoem()">
 </div>
 <p id="loading" style="display: none;">Your poem is being generated... ⌛</p>
-<div id="poem" style="margin-top: 20px;"></div>
+<div id="wpoem"><div id="poem" style="margin-top: 20px;"></div><button onclick="ctc(this)" style="display:block;margin:auto;">Copy Poem 📋</button></div>
 <div id="opoem" style="margin-top: 20px;"></div>
 <script>
 	var selectedNumber = "four";
-	var firsttime = true;
+	var firsttime = true, loadingElement = document.getElementById("loading");
     function handleRadioChange(value) {
         selectedNumber = value;
         console.log("Selected number:", selectedNumber);
     }
+    function ctc(button) { var poemElement = button.previousElementSibling; var textToCopy = poemElement.innerText; navigator.clipboard.writeText(textToCopy).then(function() { alert("Poem copied to clipboard!"); }).catch(function(error) { console.error("Could not copy text: ", error); }); }
     function generatePoem() {
-		loadingElement = document.getElementById("loading");
-		loadingElement.style.display = "block";
+	loadingElement.style.display = "block";
         let apiKey = "b8453383f75c0afafd7ft88f33789o5a";
         let inputValue = document.getElementById("input-prompt").value;
         let prompt = `generate a ${selectedNumber}-line poem in ES/ES about ${inputValue}. I want one verse per line.`;
@@ -96,10 +98,10 @@ input {
                 let response = JSON.parse(xhr.responseText);
 				if (firsttime){
 					document.getElementById("poem").innerHTML = response.answer;
-					document.getElementById("poem").style.display = "block";
+					document.getElementById("wpoem").style.display = "block";
 					firsttime = false;
 				}else{
-					document.getElementById("opoem").innerHTML += document.getElementById("poem").outerHTML;
+					document.getElementById("opoem").innerHTML += document.getElementById("wpoem").outerHTML;
 					document.getElementById("poem").innerHTML = response.answer;
 				}
             } else {
@@ -110,8 +112,9 @@ input {
         xhr.send();
     }
 </script>
-<div style="position:absolute;bottom:0px">
+<div style="margin:auto;">
 <div style="text-align:center;"> Created by</div>
 <div style="text-align:center;font:message-box;">Ghazali</div>
+</div>
 </body>
 </html>
