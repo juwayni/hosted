@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poem Generator</title>
+<style>
+body {
+    max-width: max-content;
+    margin: auto;
+    background-color: rgb(253, 237, 239);
+}
+input {
+    border-radius: 20px;
+}
+#submit:hover {
+    background-color: rgb(255, 109, 133);
+    border: 1px solid rgb(255, 109, 133);
+    color: white;
+}
+.input-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+.input {
+    color: #222222;
+    width: 80%;
+    padding: 5px 20px;
+    border: 1px solid lightgray;
+    margin-top: 10px;
+}
+#submit {
+    border: 1px solid pink;
+    color: #222222;
+    background-color: pink;
+    padding: 5px 25px;
+    margin-top: 10px;
+}
+#poem {
+    border-left: 3px solid rgb(255, 109, 133);
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+#wpoem{
+  display:none;
+}
+</style>
+</head>
+<body>
+<h1>Generate a Japanese Poem</h1>
+<h2>Select an Even Number (2-20)</h2>
+<div>
+<!-- Generate radio buttons dynamically -->
+<label><input type="radio" name="even-number" value="two" onchange="handleRadioChange('two')"> 2</label>
+<label><input type="radio" name="even-number" value="four" onchange="handleRadioChange('four')" checked> 4</label>
+<label><input type="radio" name="even-number" value="six" onchange="handleRadioChange('six')"> 6</label>
+<label><input type="radio" name="even-number" value="eight" onchange="handleRadioChange('eight')"> 8</label>
+<label><input type="radio" name="even-number" value="ten" onchange="handleRadioChange('ten')"> 10</label>
+<label><input type="radio" name="even-number" value="twelve" onchange="handleRadioChange('twelve')"> 12</label>
+<label><input type="radio" name="even-number" value="forteen" onchange="handleRadioChange('forteen')"> 14</label>
+<label><input type="radio" name="even-number" value="sixteen" onchange="handleRadioChange('sixteen')"> 16</label>
+<label><input type="radio" name="even-number" value="eighteen" onchange="handleRadioChange('eighteen')"> 18</label>
+<label><input type="radio" name="even-number" value="twenty" onchange="handleRadioChange('twenty')"> 20</label>
+</div>
+<div class="input-container" id="form">
+   <input type="text" id="input-prompt" name="input" class="input" placeholder="Insert prompt here" required="" autocomplete="off">
+   <input type="button" value="Submit" id="submit" onclick="generatePoem()">
+</div>
+<p id="loading" style="display: none;">Your poem is being generated... ⌛</p>
+<div id="wpoem"><div id="poem" style="margin-top: 20px;"></div><button onclick="ctc(this)" style="display:block;margin:auto;">Copy Poem 📋</button></div>
+<div id="opoem" style="margin-top: 20px;"></div>
+<script>
+	var selectedNumber = "four";
+	var firsttime = true, loadingElement = document.getElementById("loading");
+    function handleRadioChange(value) {
+        selectedNumber = value;
+        console.log("Selected number:", selectedNumber);
+    }
+    function ctc(button) { var poemElement = button.previousElementSibling; var textToCopy = poemElement.innerText; navigator.clipboard.writeText(textToCopy).then(function() { alert("Poem copied to clipboard!"); }).catch(function(error) { console.error("Could not copy text: ", error); }); }
+    function generatePoem() {
+	loadingElement.style.display = "block";
+        let apiKey = "b8453383f75c0afafd7ft88f33789o5a";
+        let inputValue = document.getElementById("input-prompt").value;
+        let prompt = `generate a ${selectedNumber}-line poem in JA/JA about ${inputValue}. I want one verse per line.`;
+        let context = `make sure you write one poem-verse per line. It needs to have ${selectedNumber} lines of text. Use the <br> elements to separate the lines of the poem.`;
+        let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", apiUrl, true);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+				loadingElement.style.display = "none";
+                let response = JSON.parse(xhr.responseText);
+				if (firsttime){
+					document.getElementById("poem").innerHTML = response.answer;
+					document.getElementById("wpoem").style.display = "block";
+					firsttime = false;
+				}else{
+					document.getElementById("opoem").innerHTML += document.getElementById("wpoem").outerHTML;
+					document.getElementById("poem").innerHTML = response.answer;
+				}
+            } else {
+                alert("Error fetching the poem. Please try again.");
+            }
+        };
+
+        xhr.send();
+    }
+</script>
+<div style="margin:auto;">
+<div style="text-align:center;">Created by</div>
+<div style="text-align:center;font:message-box;">Ghazali</div>
+</div>
+</body>
+</html>
