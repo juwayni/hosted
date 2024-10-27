@@ -85,7 +85,7 @@ input {
 	loadingElement.style.display = "block";
         let apiKey = "b8453383f75c0afafd7ft88f33789o5a";
         let inputValue = document.getElementById("input-prompt").value;
-        let prompt = `generate a ${selectedNumber}-line poem in TEL/TEL about ${inputValue}. I want one verse per line.`;
+        let prompt = `generate a ${selectedNumber}-line poem in TE/TE about ${inputValue}. I want one verse per line.`;
         let context = `make sure you write one poem-verse per line. It needs to have ${selectedNumber} lines of text. Use the <br> elements to separate the lines of the poem.`;
         let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
 
