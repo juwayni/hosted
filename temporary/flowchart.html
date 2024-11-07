@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        /* Basic styles for the button */
+        #startButton {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: auto;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #startButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+
+        #startButton:disabled {
+            background-color: #ccc; /* Gray when disabled */
+            cursor: not-allowed; /* Change cursor when disabled */
+        }
+
+        /* Optional styles for the SVG */
+        svg {
+            margin-top: 20px;
+        }
+		.label {
+            pointer-events: none; /* Prevents interaction with the label */
+        }
+    </style>
+    <script src="h2cm.js"></script>
+</head>
+<body onload="lodd();">
+<script>
+window.onload = function(){
+    mermaid.initialize({
+        theme: 'forest',
+		flowchart: { useMaxWidth: true, htmlLabels: true},securityLevel: 'loose'
+    });
+}
+
+// theme: https://github.com/knsv/mermaid/tree/master/src/themes
+// default, forest, dark and neutral
+</script>
+<script type="text/javascript" src="mermaid.min.js"></script>
+<button id="startButton">Start Highlighter</button>
+
+<div style="width:100%;display:none;">
+graph TD;
+    A[Anemia] -->|Iron deficiency| B[Etiology];
+    B -->|Dietary insufficiency| C[Eating habits];
+    B -->|Blood loss| D[Hemorrhage];
+    B -->|Malabsorption| E[Gastrointestinal disorders];
+    B -->|Increased demand| F[Pregnancy, growth];
+    B -->|Other causes| G[Chronic diseases];
+    C -->|Low iron intake| H[Vegetarian diet];
+    C -->|Poor absorption| I[Gastric surgery];
+    D -->|Acute| J[Trauma];
+    D -->|Chronic| K[Peptic ulcer];
+    E -->|Celiac disease| L[Small intestine];
+    E -->|Inflammatory bowel disease| M[Intestinal inflammation];
+    F -->|Physiological| N[Pregnancy];
+    F -->|Pathological| O[Puberty];
+    G -->|Renal failure| P[Chronic kidney disease];
+    G -->|Chronic infection| Q[Inflammatory diseases];
+    G -->|Malignancy| R[Cancer];
+    G -->|Other chronic diseases| S[Heart failure];
+    A -->|Compensatory mechanisms| T[Red blood cell production];
+    T -->|Bone marrow response| U[Increased erythropoiesis];
+    U -->|Microcytic hypochromic RBCs| V[Peripheral blood smear];
+    V -->|Characteristic findings| W[Low MCV, MCH];
+    W -->|Anisocytosis, poikilocytosis| X[Peripheral smear];
+    X -->|Hypochromic, microcytic cells| Y[Iron deficiency morphology];
+    Y -->|Ringed sideroblasts| Z[Prussian blue staining];
+    Z -->|Confirmatory diagnosis| AA[Staining];
+    A -->|Clinical manifestation| BB[Symptoms];
+    BB -->|Mild to moderate| CC[Fatigue, weakness, pallor, irritability, cognitive impairment, headache, decreased exercise tolerance, pica : craving for non-food items];
+    BB -->|Severe| DD[Dyspnea, tachycardia, angina, palpitations, syncope, orthostatic hypotension, leg cramps, angina, systolic murmur];
+    A -->|Physical examination| EE[Signs];
+    EE -->|Pallor| FF[Conjunctiva, palms, nail beds, mucous membranes];
+    EE -->|Koilonychia| GG[Spoon-shaped nails];
+    EE -->|Angular cheilitis| HH[Inflammation at corners of mouth];
+    EE -->|Glossitis| II[Inflammation of tongue];
+    EE -->|Brittle nails| JJ[Fragile nails, longitudinal ridges];
+    A -->|Diagnostic tests| KK[Laboratory tests];
+    KK -->|CBC| LL[Low Hb, Low MCV, Low MCH, Low RBC count, RDW increased];
+    KK -->|Peripheral smear| MM[Microcytic, hypochromic cells, Target cells, Pencil cells, Tear drop cells];
+    KK -->|Iron studies| NN[Low serum iron, Low ferritin, High TIBC, Low transferrin saturation];
+    NN -->|Confirmation| OO[Ferritin levels];
+    OO -->|Low ferritin| PP[Iron deficiency confirmed];
+    A -->|Underlying cause| QQ[Treat underlying disorder];
+    QQ -->|GI evaluation| RR[Endoscopy, Colonoscopy];
+    QQ -->|Hemostasis| SS[Surgical intervention, Medication];
+    QQ -->|Management| TT[Address chronic disease, Treat infections, Optimize nutrition];
+    A -->|Treatment| UU[Treatment];
+    UU -->|Iron supplementation| VV[Oral, Intravenous];
+    VV -->|Oral| WW[Ferrous sulfate, Ferrous gluconate, Ferrous fumarate, Polysaccharide iron complex];
+    VV -->|Intravenous| XX[Iron dextran, Iron sucrose, Ferric carboxymaltose];
+    UU -->|Dietary changes| YY[Increase iron-rich foods, Vitamin C supplementation, Avoid tea/coffee with meals];
+    UU -->|Blood transfusion| ZZ[Severe cases, Symptomatic patients];
+    ZZ -->|Complications| AAA[Iron overload, Transfusion reactions];
+    AAA -->|Monitor| BBB[Ferritin levels, Iron studies, Liver function tests];
+</div>
+<div style="width:100%;display:none;">
+graph TB
+  A-->B
+  B-->C
+  B-->D
+  B-->E
+  B-->F
+  B-->G
+  B-->H
+  B-->I
+  B-->J
+  B-->K
+  B-->L
+  B-->M
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart TB
+    A@{ img: "i/mol_0.png", label: "L-Phenylalanine", pos: "t", w: 200, h: 200, constraint: "off" }
+    B@{ img: "i/mol_1.png", label: "L-Tyrosine", pos: "t", w: 200, h: 200, constraint: "off" }
+    C@{ img: "i/mol_2.png", label: "L-DOPA <br>(3,4_dihydroxyphenylalanine)", pos: "t", w: 200, h: 200, constraint: "off" }
+    D@{ img: "i/mol_3.png", label: "L-Dopamine", pos: "t", w: 200, h: 200, constraint: "off" }
+    E@{ img: "i/mol_4.png", label: "L-Noradrenaline", pos: "t", w: 200, h: 200, constraint: "off" }
+    F@{ img: "i/mol_5.png", label: "L-Noradrenaline", pos: "t", w: 200, h: 200, constraint: "off" }
+	A -->|"Phenylalanine Hydroxylase <br>(in liver)"| B
+	B -->|"Tyrosine Hydroxylase <br>(cytosolic enzyme)"| C
+	C -->|"Dopa-Decarboxylase <br>(cytosolic enzyme)"| D
+	D -->|"Dopamine-β-Hydroxylase <br>(in synaptic vesicles)"| E
+	E -->|"Phenylethanolamine-N-Methyltransferase <br>(in adrenal medulla)"| F
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart TD
+    A[ADRENALINE] -->|COMT| C[Metanephrine]
+    A -->|MAO| B("DOMA<br>(Di-hydroxy Mandelic acid)")
+    B -->|COMT| D["VMA (3-methoxy-4-hydroxy-mandelic acid)"]
+    C ---->|MAO| D
+    E[NORADRENALINE] -->|MAO| B
+    E -->|COMT| F[Normetanephrine]
+    F ---->|MAO| D
+    B -->|MAO| G["MOPED<br>(3-methoxy-4-hydroxy-phenylethylglycol)"]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart TD
+    H[DOPAMINE] -->|MAO| I["DOPAC (3,4-dihydroxyphenyl acetic acid)"]
+    H -->|COMT| J[Methoxytyramine]
+    I -->|COMT| K["HVA (Homovanillic acid)"]
+</div>
+
+<div id="ccfp" class="mermaid" style="width:100%;">
+flowchart TB
+    A3[Pathogenesis of <br>Congestive Cardiac Failure]
+    A3 --> A0[Acute Cardiac Failure] --> A[Sudden onset LV dysfunction] --> B[Acute decrease in CO]
+    A3 ---> A2[Chronic Cardiac Failure] --> D[Gradual LV dysfunction] --> E[Gradual decrease in CO]
+    E --> F[Compensatory mechanisms]
+    F ----> Compensation
+    F --> H[Failure] --> leads
+    B ----> leads
+    subgraph Compensation
+    direction TB
+    M[Compensation by]
+    M --> N[⇧ Catecholamines]
+    M --> O[RAS activation]
+    N --> P[⇧ Heart Contraction]
+    N --> P2["⇧ Heart Rate"]
+    N --> R[⇧ Vasoconstriction]
+    O --> T[⇧ Vasoconstriction]
+    O --> U[⇧ Na + H2O Retention]
+    end
+    subgraph Treatment["Treatment_::_Opposition"]
+	R --> X1[VD] --> W2[Nitrates]
+    X1 --> Z2[Nitroprusside]
+    T --> S[ACEIs , ARBs]
+    P2 --> Q
+    P --> Q[B blockers, Ivabridine]
+    U --> S
+	end
+	subgraph leads[leads to]
+    direction TB
+    C3[Pulmonary edema] --> C[Treated by]
+    C --> V[Loop diuretics]
+    C --> X[Vasodilators]
+    X --> W[Nitrates]
+    C --> Y[BNP analogs]
+    X --> Z[Nitroprusside]
+	B2[Low cardiac output] --> |only in Acute| C2[Treated by] --> I4[Inotropes]
+    end
+	B --> B2
+	Treatment ===> in[Inhibits]
+	in ==> |"Thus<br>Decrease"| L[Mortality]
+	in ==> K[⇧ Cardiac remodelling]
+	Compensation ----> |Causes| J1[⇧ Increased stress on myocardium] --> J[causes hypertrophy]
+    J --> K
+    K --> L
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart TB
+    A[Acute CHF] --> B[Low cardiac output]
+    A --> C[Pulmonary edema]
+    B --> D[Start inotropes<br>First choice: Dobutamine<br>Alternatives: Dopamine/Milrinone/Levosimendan]
+    C --> E[Start loop diuretics]
+    E --> F[Morphine]
+    F -- Not responding --> G[Vasodilators]
+    G -- Not responding --> H["Nesiritide(BNP)"]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart TB
+    A[Chronic CHF] --> B[ACEI/ARB]
+    B --> C[Beta blockers]
+    C -- Not responding --> D[Aldosterone antagonists]
+    D -- Not responding --> E["Ivabridine<br>(inhibit funny)"]
+    E -- Not responding --> F["Isosorbide dinitrate (ISDN) + Hydralazine"]
+    F -- Not responding<br>(finally) --> G[Digoxin]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart TB
+    A[β blocker toxicity] --> B[Decreased cyc AMP]
+    A --> C[AV Block]
+    A --> D[Hypotension]
+    B --> E[Glucagon Antidote of choice]
+    C --> F[Atropine]
+    D --> G[Isoproteronol]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart TB
+  subgraph ag[Age groups]
+   direction TB
+    A[Age < 55 years] --> B[ACEI/ARB]
+    C[Age ≥ 55 years] --> D[CCB]
+  end
+    ag -->|Inadequate control after 1 month| F[ACEI/ARB + CCB]
+    F -->|Inadequate control after 1 month| H[ACEI/ARB + CCB + Thiazide]
+    H -->|Inadequate control after 1 month| J[Resistant hypertension]
+    J --> K[ACEI/ARB + CCB + Thiazide + Spironolactone]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A[Classification] --> B[Non-cardioselective]
+    B --> C[Propranolol, timolol, sotalol]
+    A --> D[Cardioselective]
+    D --> E[Atenolol, metoprolol, esmolol, betaxolol]
+    A --> F[Partial agonist]
+    F --> G[Pindolol, oxprenolol]
+    A --> H[With additional α blocking property]
+    H --> I[Labetalol, carvedilol]
+    A --> J[With additional β2 agonistic property]
+    J --> K[Celiprolol]
+    A --> L[With additional antioxidant property]
+    L --> M[Carvedilol]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A[Pharmacological actions] --> B["1: CVS"]
+    B --> C["↓ HR, FOC, CO, BP"]
+    C --> D[Hence ↑ cardiac work]
+    B --> E[↓ Myocardial O₂ requirement]
+    E --> F[Hence ↑ cardiac work]
+    B --> G[Effect more significant in presence of high sympathetic tone than in normal individuals]
+    B --> H[Delays AV conduction]
+    B --> I[↑ Exercise tolerance in angina pectoris patients]
+    B --> J[Prevents exercise-induced ↑ in HR and FOC]
+    B --> K["Possesses membrane stabilization property (like quinidine) at high doses"]
+    K --> L[Hence causes direct myocardial depression]
+    A --> M["2: Respiratory system"]
+    M --> N[Causes bronchoconstriction due to β2 blockade]
+    N --> O[Thus precipitates acute attacks in asthma]
+    A --> P["3: Eye"]
+    P --> Q[↓ IOP, as ↓ aqueous humor secretion from ciliary body]
+    A --> R["4: Metabolism"]
+    R --> S[Blocks lipolysis]
+    R --> T["Blocks glycogenolysis (β2 action)"]
+    T --> U[Hence nonselective β blockers interfere with recovery of hypoglycemia in diabetics]
+    R --> V["↑ Triglycerides, ↓ HDL"]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A[Uses] --> B1["1: Hypertension"]
+    B1 --> C1[Mild to moderate]
+    B1 --> D1[Alone or in combination with other antihypertensives]
+    A --> E1["2: Angina pectoris"]
+    E1 --> F1[Prophylaxis of exertional angina]
+    E1 --> G1[They ↓ frequency and severity of attacks]
+    E1 --> H1[They ↓ cardiac work and O₂ consumption]
+    A --> I1["3: Arrhythmias"]
+    I1 --> J1["Ventricular/supraventricular arrhythmias"]
+    J1 --> K1[Sotalol is preferred]
+    A --> L1["4: Myocardial infarction"]
+    L1 --> M1[IV β blocker ↓ size of infarct]
+    L1 --> N1[Long-term administration ↑ survival]
+    A --> B["5: Congestive cardiac failure (CCF)"]
+    B --> C[Earlier CCF was a contraindication]
+    B --> D[Recent studies demonstrate their benefit if used judiciously in select patients]
+    D --> E[Hemodynamically stable]
+    B --> F[↓ Sudden death]
+    B --> G[↑ Survival]
+    A --> H["6: Obstructive cardiomyopathy"]
+    B --> I[Inhibits sympathetic stimulation]
+    B --> J[Prevents cardiac remodeling]
+    J --> K[This is detrimental to heart]
+    A --> L["7: Pheochromocytoma"]
+    L --> M[Along with α blockers]
+    L --> N[↓ Palpitations, tremors hence provides only symptomatic relief]
+    A --> O["8: Thyrotoxicosis"]
+    O --> P[Beneficial even in thyrotoxic crisis or thyroid storm]
+    O --> Q[Prevents peripheral T4 → T3 conversion]
+    A --> R["9: Glaucoma"]
+    R --> S[Topical timolol]
+    R --> T[Open angle and narrow angle glaucoma]
+    R --> U[First-line treatment]
+    A --> V["10: Migraine prophylaxis"]
+    V --> W[↓ Frequency and severity of attacks]
+    A --> X["11: Anxiety"]
+    X --> Y["Acute panic symptoms of public speaking/ examination"]
+    X --> Z["↓ Sympathetic stimulation e:g:, tremor, palpitations"]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A[Adverse reactions] --> B["1: Bradycardia"]
+    B --> C[In heart block in patients with conduction defects]
+    B --> D["In patients with arrhythmia (bradyarrhythmias)"]
+    A --> E["2: CCF"]
+    E --> F[In patients with reduced cardiac function, sympathetic activity maintains cardiac function]
+    F --> G["However, β blockers ↓ this, thus aggravate cardiac failure"]
+    A --> H["3: Cold extremities"]
+    H --> I[Esp: in patients with peripheral vascular disease]
+    A --> J["4: Acute bronchial asthma"]
+    J --> K[Due to blockade of β2 receptors; hence there is bronchoconstriction]
+    K --> L["Esp: with nonselective β blockers (propranolol)"]
+    A --> M["5: CNS"]
+    M --> N["Insomnia, depression, rarely hallucinations"]
+    A --> O["6: Fatigue"]
+    O --> P["Due to ↓ CO, there is ↓ in blood flow to skeletal muscles"]
+    A --> Q["7: Metabolic side effects"]
+    Q --> R["↑ Triglycerides, ↓ HDL"]
+    Q --> S[Dangerous side effect]
+    A --> T["8: Rebound hypertension"]
+    T --> U[On abrupt withdrawal after long-term use]
+    T --> V[Dangerous side effect]
+    A --> W["9: Rebound angina"]
+    W --> X[On abrupt withdrawal after long-term use]
+    W --> Y[Both due to upregulation of β receptors]
+    A --> Z["10: Dizziness"]
+    Z --> AA[Hence β blockers should be gradually tapered]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A[Contraindications] --> B["1: Bradycardia"]
+    A --> C["2: Heart Block"]
+    A --> D["3: Bronchial asthma and COPD"]
+    A --> E["4: Diabetes mellitus"]
+    A --> F["5: Congestive cardiac failure (judicious use in select patients)"]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A[Cardioselective β blockers] --> B["e:g:, Atenolol, metoprolol, esmolol"]
+    B --> C["Selective β1 blockade, insignificant β2 blockade"]
+    C --> D[Hence there is minimal bronchoconstriction]
+    B --> E["Safer in diabetics, as there is less inhibition of glycogenolysis"]
+    B --> F[Lesser impairment of exercise performance]
+    B --> G[Reduced chances of peripheral vascular disease]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A2[Partial agonists] --> B2["e:g:, Pindolol, oxprenolol"]
+    B2 --> C2[Possess intrinsic sympathomimetic activity]
+    C2 --> D2[Hence there is minimal bradycardia and cardiac depression]
+    C2 --> E2[Thus they are preferred in patients with bradycardia and cardiac function]
+</div>
+
+<div class="mermaid" style="width:100%;">
+flowchart LR
+    A[Some individual β blockers] --> B[Acebutalol]
+    B --> C[Possesses partial agonist activity]
+    B --> D["Used in hypertension, arrhythmias"]
+    A --> E[Celiprolol]
+    E --> F[Possesses additional β2 agonist activity]
+    E --> G[Hence safe in asthmatics]
+    A --> H[Timolol]
+    H --> I[Nonselective β blocker]
+    H --> J[Short-acting]
+    H --> K[Eye drops used in glaucoma]
+    A --> L[Labetalol]
+    L --> M["Blocks β1, β2, and α1 receptors"]
+    M --> N[Hence acts as both α and β blocker]
+    L --> O[Causes vasodilation]
+    O --> P[↑ Blood flow to extremities]
+    P --> Q[So there are no cold extremities and peripheral vascular disease chances]
+    L --> R[It has both α1 and β blockade activity]
+    A --> S[Carvedilol]
+    S --> T["β1, β2, and α1 blockade activity"]
+    S --> U[Additional antioxidant property]
+    U --> V[Thus beneficial in patients with hypertension and CCF]
+</div>
+
+<script>
+
+// Function to handle mouseover
+function handleMouseOver(event) {
+    event.target.style.fill = 'yellow';
+}
+
+// Function to handle mouseout
+function handleMouseOut(event) {
+    event.target.style.fill = null; // Reset to original color
+}
+
+// Function to start listening to events
+function startListening() {
+    const nodeElements = document.querySelectorAll('.node');
+
+    nodeElements.forEach(node => {
+        const originalColor = node.getAttribute('fill');
+        node.addEventListener('mouseover', handleMouseOver);
+        node.addEventListener('mouseout', handleMouseOut);
+    });
+
+    document.getElementById('startButton').disabled = true; // Disable button after activation
+}
+
+// Attach the click event to the button
+document.getElementById('startButton').addEventListener('click', startListening);
+
+</script>
+</body>
+</html>
