@@ -92,27 +92,11 @@ input {
 //const poemElement = document.getElementById('wpoem');
 
 // Define the new poem as HTML
-const newm = `
-In einer Welt voll Farben, so weit und schön,<br>  
-Möchte ich, dass du mein Freund wirst, nicht allein zu geh’n.<br>  
-Gemeinsame Lacher, die den Tag erhell’n,<br>  
-In deinem Herzen, dort möcht' ich verweil’n.<br>  
-
-Die Wege sind oft steinig, voller Schleier,<br>  
-Doch zusammen gehen wir, stets als treu' Begleiter.<br>  
-Hände halten, in Stürmen uns versteckend,<br>  
-Für jede Dunkelheit, die wir echt entdeckend.<br>  
-
-Die Geheimnisse flüstern, die Sterne leuchten,<br>  
-Mit dir an meiner Seite, möcht' ich nie bereuen.<br>  
-Zeit in deinem Lächeln, die Stunden verfliegen,<br>  
-Deine Nähe ist der Hafen, in dem Seelen wiegen.<br>  
-
-So öffne dein Herz, lass uns gemeinsam träumen,<br>  
-Freundschaft ist das Band, das die Welt kann räumen.<br>  
-Ein Kapitel beginnen, mit dir an meiner Seit,<br>  
-Lass uns die Zukunft malen, voller Freude, weit.<br>  
-`;
+const newm = {
+  "prompt": "generate a sixteen-line poem in DE/DE about I wish that we were friends. I want one verse per line.",
+  "context": "make sure you write one poem-verse per line. It needs to have sixteen lines of text. Use the \u003cbr\u003e elements to separate the lines of the poem.",
+  "answer": "In einer Welt voll Farben, so weit und schön, \u003cbr\u003e\nMöchte ich, dass du mein Freund wirst, nicht allein zu geh’n. \u003cbr\u003e\nGemeinsame Lacher, die den Tag erhell’n, \u003cbr\u003e\nIn deinem Herzen, dort möcht' ich verweil’n. \u003cbr\u003e\nDie Wege sind oft steinig, voller Schleier, \u003cbr\u003e\nDoch zusammen gehen wir, stets als treu' Begleiter. \u003cbr\u003e\nHände halten, in Stürmen uns versteckend, \u003cbr\u003e\nFür jede Dunkelheit, die wir echt entdeckend. \u003cbr\u003e\nDie Geheimnisse flüstern, die Sterne leuchten, \u003cbr\u003e\nMit dir an meiner Seite, möcht' ich nie bereuen. \u003cbr\u003e\nZeit in deinem Lächeln, die Stunden verfliegen, \u003cbr\u003e\nDeine Nähe ist der Hafen, in dem Seelen wiegen. \u003cbr\u003e\nSo öffne dein Herz, lass uns gemeinsam träumen, \u003cbr\u003e\nFreundschaft ist das Band, das die Welt kann räumen. \u003cbr\u003e\nEin Kapitel beginnen, mit dir an meiner Seit, \u003cbr\u003e\nLass uns die Zukunft malen, voller Freude, weit. \u003cbr\u003e"
+};
 
 // Append the new poem as HTML in front of the existing content
 //poemElement.insertAdjacentHTML('afterbegin', newPoem);
@@ -125,7 +109,7 @@ Lass uns die Zukunft malen, voller Freude, weit.<br>
 				loadingElement.style.display = "none";
                 let response = JSON.parse(xhr.responseText);
 				if (firsttime){
-					document.getElementById("poem").innerHTML = newm;
+					document.getElementById("poem").innerHTML = newm.answer;
 					document.getElementById("wpoem").style.display = "block";
 					firsttime = false;
 				}else{
