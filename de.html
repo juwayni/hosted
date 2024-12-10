@@ -88,6 +88,34 @@ input {
         let prompt = `generate a ${selectedNumber}-line poem in DE/DE about ${inputValue}. I want one verse per line.`;
         let context = `make sure you write one poem-verse per line. It needs to have ${selectedNumber} lines of text. Use the <br> elements to separate the lines of the poem.`;
         let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+// Select the element with the ID 'wpoem'
+//const poemElement = document.getElementById('wpoem');
+
+// Define the new poem as HTML
+const newm = `
+In einer Welt voll Farben, so weit und schön,<br>  
+Möchte ich, dass du mein Freund wirst, nicht allein zu geh’n.<br>  
+Gemeinsame Lacher, die den Tag erhell’n,<br>  
+In deinem Herzen, dort möcht' ich verweil’n.<br>  
+
+Die Wege sind oft steinig, voller Schleier,<br>  
+Doch zusammen gehen wir, stets als treu' Begleiter.<br>  
+Hände halten, in Stürmen uns versteckend,<br>  
+Für jede Dunkelheit, die wir echt entdeckend.<br>  
+
+Die Geheimnisse flüstern, die Sterne leuchten,<br>  
+Mit dir an meiner Seite, möcht' ich nie bereuen.<br>  
+Zeit in deinem Lächeln, die Stunden verfliegen,<br>  
+Deine Nähe ist der Hafen, in dem Seelen wiegen.<br>  
+
+So öffne dein Herz, lass uns gemeinsam träumen,<br>  
+Freundschaft ist das Band, das die Welt kann räumen.<br>  
+Ein Kapitel beginnen, mit dir an meiner Seit,<br>  
+Lass uns die Zukunft malen, voller Freude, weit.<br>  
+`;
+
+// Append the new poem as HTML in front of the existing content
+//poemElement.insertAdjacentHTML('afterbegin', newPoem);
 
         let xhr = new XMLHttpRequest();
         xhr.open("GET", apiUrl, true);
@@ -97,7 +125,7 @@ input {
 				loadingElement.style.display = "none";
                 let response = JSON.parse(xhr.responseText);
 				if (firsttime){
-					document.getElementById("poem").innerHTML = response.answer;
+					document.getElementById("poem").innerHTML = newm;
 					document.getElementById("wpoem").style.display = "block";
 					firsttime = false;
 				}else{
