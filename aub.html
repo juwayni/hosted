@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Abnormal Uterine Bleeding Assessment Tool</title>
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #f39c12;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #9b59b6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .section-header {
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-content {
+            padding: 20px;
+            background-color: white;
+            display: none;
+        }
+        
+        .section.active .section-content {
+            display: block;
+        }
+        
+        .section.active {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #fafafa;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(142, 68, 173, 0.2);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-group label,
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group input,
+        .radio-group input {
+            margin-right: 10px;
+            width: auto;
+        }
+        
+        .help-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-prev {
+            background-color: #e0e0e0;
+            color: #555;
+        }
+        
+        .btn-next {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-submit {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .current-section {
+            font-weight: bold;
+        }
+        
+        .section-badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .section-badge.complete {
+            background-color: var(--success-color);
+        }
+        
+        .section-badge.incomplete {
+            background-color: var(--warning-color);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-col {
+            flex: 1;
+            padding: 0 10px;
+            min-width: 250px;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        
+        .dropdown-select {
+            position: relative;
+        }
+        
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--info-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            cursor: help;
+        }
+        
+        .info-tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            width: 200px;
+            z-index: 1;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+        
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        
+        .rating input {
+            display: none;
+        }
+        
+        .rating label {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            background-color: #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            transition: all 0.2s;
+        }
+        
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .summary-container {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .summary-section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .summary-section h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .summary-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .summary-item-label {
+            font-weight: 500;
+            width: 200px;
+            color: #666;
+        }
+        
+        .summary-item-value {
+            flex: 1;
+        }
+        .sfmpq-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sfmpq-table th,
+        .sfmpq-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .sfmpq-table th {
+            background-color: #f2f2f2;
+        }
+
+        .vas-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .vas-slider {
+            width: 100%;
+            height: 10px;
+            -webkit-appearance: none;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .vas-slider:hover {
+            opacity: 1;
+        }
+
+        .vas-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        /* Print styles for the report */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .form-container,
+            .btn-container,
+            .progress-container {
+                display: none;
+            }
+            
+            .summary-container {
+                display: block !important;
+            }
+            
+            header {
+                background: none;
+                color: black;
+                padding: 10px 0;
+                text-align: left;
+                border-bottom: 2px solid #333;
+            }
+            
+            h1 {
+                color: #333;
+            }
+            
+            .summary-section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Comprehensive Abnormal Uterine Bleeding Assessment Tool</h1>
+            <p class="subtitle">A detailed history taking and examination record for gynecology practice</p>
+        </header>
+
+        <div class="form-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentSection">Patient Details</span>
+                    <span id="completionStatus">0% Complete</span>
+                </div>
+            </div>
+
+            <form id="aubAssessmentForm">
+                <!-- SECTION 1: PATIENT DETAILS -->
+                <div class="section active" id="section1">
+                    <div class="section-header">
+                        <h2>Patient Details</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Complete all demographic and basic information about the patient.</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="patientName">Patient Name <span class="text-danger">*</span></label>
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="patientID">Patient ID/MRN</label>
+                                    <input type="text" id="patientID" name="patientID">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="patientAge">Age (Years) <span class="text-danger">*</span></label>
+                                    <input type="number" id="patientAge" name="patientAge" min="0" max="120" required>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth</label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="contactNumber">Contact Number</label>
+                                    <input type="tel" id="contactNumber" name="contactNumber">
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="maritalStatus">Marital Status</label>
+                                    <select id="maritalStatus" name="maritalStatus">
+                                        <option value="">Select</option>
+                                        <option value="single">Single</option>
+                                        <option value="married">Married</option>
+                                        <option value="divorced">Divorced</option>
+                                        <option value="widowed">Widowed</option>
+                                        <option value="separated">Separated</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="occupation">Occupation</label>
+                                    <input type="text" id="occupation" name="occupation">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="socioeconomicClass">Socioeconomic Class</label>
+                                    <select id="socioeconomicClass" name="socioeconomicClass">
+                                        <option value="">Select</option>
+                                        <option value="upper">Upper</option>
+                                        <option value="upper-middle">Upper Middle</option>
+                                        <option value="middle">Middle</option>
+                                        <option value="lower-middle">Lower Middle</option>
+                                        <option value="lower">Lower</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="educationLevel">Education Level</label>
+                                    <select id="educationLevel" name="educationLevel">
+                                        <option value="">Select</option>
+                                        <option value="none">No Formal Education</option>
+                                        <option value="primary">Primary</option>
+                                        <option value="secondary">Secondary</option>
+                                        <option value="graduate">Graduate</option>
+                                        <option value="postgraduate">Post Graduate</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="religion">Religion</label>
+                                    <input type="text" id="religion" name="religion">
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="referredBy">Referred By</label>
+                                    <input type="text" id="referredBy" name="referredBy">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateOfAssessment">Date of Assessment <span class="text-danger">*</span></label>
+                            <input type="date" id="dateOfAssessment" name="dateOfAssessment" required>
+                        </div>
+
+                        <div class="btn-container">
+                            <button type="button" class="btn-next" onclick="nextSection(1)">Next: Present Complaints</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: PRESENT COMPLAINTS -->
+                <div class="section" id="section2">
+                    <div class="section-header">
+                        <h2>Present Complaints</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Document the patient's presenting symptoms related to abnormal uterine bleeding.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Chief Complaints <span class="text-danger">*</span></label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="complaints" value="heavyMenstrualBleeding"> Heavy menstrual bleeding during periods (Menorrhagia)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="frequentPeriods"> Frequent periods (Polymenorrhoea)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="frequentAndProfusePeriods"> Frequent and profuse periods (Polymenorrhagia)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="intermenstrualBleeding"> Bleeding between periods (Metrorrhagia)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="postcoitalBleeding"> Bleeding after intercourse (Post-coital bleeding)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="premenstrualSpotting"> Spotting before periods (Premenstrual spotting)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="postmenstrualSpotting"> Spotting after periods (Postmenstrual spotting)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="amenorrheaFollowedByBleeding"> Period of no menses followed by bleeding</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="irregularBleeding"> Irregular bleeding pattern</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="painfulPeriods"> Painful periods (Dysmenorrhoea)</label>
+                                <label>
+                                    <input type="checkbox" name="complaints" value="other"> Other (specify below)</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otherComplaints">Other Complaints or Details</label>
+                            <textarea id="otherComplaints" name="otherComplaints" placeholder="Specify any other complaints or provide additional details..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Duration of Complaints <span class="text-danger">*</span></label>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <input type="number" id="durationNumber" name="durationNumber" min="0" placeholder="Enter number">
+                                </div>
+                                <div class="form-col">
+                                    <select id="durationUnit" name="durationUnit">
+                                        <option value="days">Days</option>
+                                        <option value="weeks">Weeks</option>
+                                        <option value="months">Months</option>
+                                        <option value="years">Years</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="severityOfBleeding">Severity of Bleeding</label>
+                            <select id="severityOfBleeding" name="severityOfBleeding">
+                                <option value="">Select</option>
+                                <option value="mild">Mild (slightly heavier than normal)</option>
+                                <option value="moderate">Moderate (significantly heavier than normal)</option>
+                                <option value="severe">Severe (extremely heavy, affecting daily activities)</option>
+                                <option value="variable">Variable (fluctuating severity)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="otherAssociatedSymptoms">Other Associated Symptoms</label>
+                            <textarea id="otherAssociatedSymptoms" name="otherAssociatedSymptoms"></textarea>
+                        </div>
+
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(2)">Previous: Patient Details</button>
+                            <button type="button" class="btn-next" onclick="nextSection(2)">Next: History of Present Illness</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: HISTORY OF PRESENT ILLNESS -->
+                <div class="section" id="section3">
+                    <div class="section-header">
+                        <h2>History of Present Illness</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Thoroughly document the details of the patient's abnormal uterine bleeding.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="chronicityOfBleeding">Chronicity of Bleeding</label>
+                            <select id="chronicityOfBleeding" name="chronicityOfBleeding">
+                                <option value="">Select</option>
+                                <option value="acute">Acute (sudden onset)</option>
+                                <option value="chronic">Chronic (>6 months)</option>
+                                <option value="acute-on-chronic">Acute on chronic</option>
+                                <option value="recurrent">Recurrent (episodic)</option>
+                            </select>
+                        </div>
+
+                        <!-- For Menorrhagia (Heavy Menstrual Bleeding) -->
+                        <div id="menorrhagiaDetails" class="conditional-section">
+                            <h3>Details of Heavy Menstrual Bleeding</h3>
+
+                            <div class="form-group">
+                                <label for="menstrualFlow">Duration of Flow (days)</label>
+                                <input type="number" id="menstrualFlow" name="menstrualFlow" min="1" max="30">
+                                <p class="help-text">Normal duration is 4-7 days</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="padsPerDay">Number of Pads/Tampons Used Per Day (at heaviest flow) <span class="info-tooltip" data-tooltip="Count fully soaked pads/tampons that need changing">?</span></label>
+                                <input type="number" id="padsPerDay" name="padsPerDay" min="0" max="50">
+                                <p class="help-text">More than 6-8 fully soaked pads per day suggests menorrhagia</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Pad/Tampon Saturation</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="padSaturation" value="fully"> Fully soaked</label>
+                                    <label>
+                                        <input type="radio" name="padSaturation" value="partly"> Partly soaked</label>
+                                    <label>
+                                        <input type="radio" name="padSaturation" value="spotting"> Spotting only</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nighttimeBleeding">Do you need to wake up at night to change pads/tampons?</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="nighttimeBleeding" value="yes"> Yes</label>
+                                    <label>
+                                        <input type="radio" name="nighttimeBleeding" value="no"> No</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Passage of Blood Clots</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="bloodClots" value="yes"> Yes</label>
+                                    <label>
+                                        <input type="radio" name="bloodClots" value="no"> No</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="clotSizeGroup" style="display: none;">
+                                <label>Size of Blood Clots</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="clotSize" value="small"> Small (&lt; 1 cm)</label>
+                                    <label>
+                                        <input type="radio" name="clotSize" value="medium"> Medium (1-3 cm)</label>
+                                    <label>
+                                        <input type="radio" name="clotSize" value="large"> Large (> 3 cm)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Presence of Pain with Bleeding</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="painWithBleeding" value="yes"> Yes</label>
+                                <label>
+                                    <input type="radio" name="painWithBleeding" value="no"> No</label>
+                            </div>
+                        </div>
+
+                        <!-- Timing of Pain and Severity of Pain -->
+                        <div id="painDetails" class="conditional-section" style="display: none;">
+                            <div class="form-group">
+                                <label>Timing of Pain</label>
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" name="painTiming" value="beforePeriod"> Before period</label>
+                                    <label>
+                                        <input type="checkbox" name="painTiming" value="duringPeriod"> During period</label>
+                                    <label>
+                                        <input type="checkbox" name="painTiming" value="afterPeriod"> After period</label>
+                                    <label>
+                                        <input type="checkbox" name="painTiming" value="midCycle"> Mid-cycle</label>
+                                    <label>
+                                        <input type="checkbox" name="painTiming" value="constant"> Constant</label>
+                                </div>
+                            </div>
+
+                            <!-- Numerical Rating Scale (NRS) -->
+                            <div class="form-group">
+                                <label>Severity of Pain (1-10)</label>
+                                <div class="rating">
+                                    <input type="radio" id="pain10" name="painSeverity" value="10">
+                                    <label for="pain10">10</label>
+                                    <input type="radio" id="pain9" name="painSeverity" value="9">
+                                    <label for="pain9">9</label>
+                                    <input type="radio" id="pain8" name="painSeverity" value="8">
+                                    <label for="pain8">8</label>
+                                    <input type="radio" id="pain7" name="painSeverity" value="7">
+                                    <label for="pain7">7</label>
+                                    <input type="radio" id="pain6" name="painSeverity" value="6">
+                                    <label for="pain6">6</label>
+                                    <input type="radio" id="pain5" name="painSeverity" value="5">
+                                    <label for="pain5">5</label>
+                                    <input type="radio" id="pain4" name="painSeverity" value="4">
+                                    <label for="pain4">4</label>
+                                    <input type="radio" id="pain3" name="painSeverity" value="3">
+                                    <label for="pain3">3</label>
+                                    <input type="radio" id="pain2" name="painSeverity" value="2">
+                                    <label for="pain2">2</label>
+                                    <input type="radio" id="pain1" name="painSeverity" value="1">
+                                    <label for="pain1">1</label>
+                                </div>
+                                <div class="help-text">Numerical Rating Scale (NRS) Scores of 1-3 indicate mild dysmenorrhea, 4-7 moderate, and 8-10 severe.</div>
+                            </div>
+
+                            <!-- Short-Form McGill Pain Questionnaire (SF-MPQ) -->
+                            <div class="form-group">
+                                <h3>Short-Form McGill Pain Questionnaire (SF-MPQ)</h3>
+                                <p>Rate each descriptor on a scale of 0 (none) to 3 (severe).</p>
+                                <table class="sfmpq-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>NONE</th>
+                                            <th>MILD</th>
+                                            <th>Moderate</th>
+                                            <th>Severe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Throbbing</td>
+                                            <td>
+                                                <input type="radio" name="throbbing" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="throbbing" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="throbbing" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="throbbing" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shooting</td>
+                                            <td>
+                                                <input type="radio" name="shooting" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="shooting" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="shooting" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="shooting" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stabbing</td>
+                                            <td>
+                                                <input type="radio" name="stabbing" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="stabbing" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="stabbing" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="stabbing" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sharp</td>
+                                            <td>
+                                                <input type="radio" name="sharp" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="sharp" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="sharp" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="sharp" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cramping</td>
+                                            <td>
+                                                <input type="radio" name="cramping" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="cramping" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="cramping" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="cramping" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gnawing</td>
+                                            <td>
+                                                <input type="radio" name="gnawing" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="gnawing" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="gnawing" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="gnawing" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Burning-Hot</td>
+                                            <td>
+                                                <input type="radio" name="burning" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="burning" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="burning" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="burning" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aching</td>
+                                            <td>
+                                                <input type="radio" name="aching" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="aching" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="aching" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="aching" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Heavy</td>
+                                            <td>
+                                                <input type="radio" name="heavy" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="heavy" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="heavy" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="heavy" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tender</td>
+                                            <td>
+                                                <input type="radio" name="tender" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tender" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tender" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tender" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Splitting</td>
+                                            <td>
+                                                <input type="radio" name="splitting" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="splitting" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="splitting" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="splitting" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tiring-Exhausting</td>
+                                            <td>
+                                                <input type="radio" name="tiring_exhausting" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tiring_exhausting" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tiring_exhausting" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tiring_exhausting" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sickening</td>
+                                            <td>
+                                                <input type="radio" name="sickening" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="sickening" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="sickening" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="sickening" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fearful</td>
+                                            <td>
+                                                <input type="radio" name="fearful" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="fearful" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="fearful" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="fearful" value="3">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Punishing-Cruel</td>
+                                            <td>
+                                                <input type="radio" name="punishing_cruel" value="0">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="punishing_cruel" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="punishing_cruel" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="punishing_cruel" value="3">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <!-- Visual Analogue Scale (VAS) -->
+                            <div class="form-group">
+                                <label>Visual Analogue Scale (VAS)</label>
+                                <div class="vas-container">
+                                    <span>No Pain</span>
+                                    <input type="range" min="0" max="10" step="1" value="0" class="vas-slider">
+                                    <span>Worst Possible Pain</span>
+                                </div>
+                            </div>
+
+                            <!-- Present Pain Intensity (PPI) -->
+                            <h3>Present Pain Intensity (PPI)</h3>
+                            <p>Select the number that best describes current pain level.</p>
+                            <table class="ppi-table">
+                                <tbody>
+                                    <tr>
+                                        <td>0 - No Pain</td>
+                                        <td>
+                                            <input type="radio" name="ppi" value="0">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1 - Mild</td>
+                                        <td>
+                                            <input type="radio" name="ppi" value="1">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2 - Discomforting</td>
+                                        <td>
+                                            <input type="radio" name="ppi" value="2">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 - Distressing</td>
+                                        <td>
+                                            <input type="radio" name="ppi" value="3">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4 - Horrible</td>
+                                        <td>
+                                            <input type="radio" name="ppi" value="4">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5 - Excruciating</td>
+                                        <td>
+                                            <input type="radio" name="ppi" value="5">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Additional History of Present Illness Fields -->
+                        <div class="form-group">
+                            <label>Associated Symptoms with Bleeding</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="fatigue"> Fatigue</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="palpitations"> Palpitations</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="dizziness"> Dizziness</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="abdominalPain"> Abdominal pain</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="backPain"> Back pain</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="pelvicPain"> Pelvic pain</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="weightGain"> Weight gain</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="weightLoss"> Weight loss</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="hairLoss"> Hair loss</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="excessiveHairGrowth"> Excessive hair growth</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="acne"> Acne</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="moodChanges"> Mood changes</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="fever"> Fever</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="nightSweats"> Night sweats</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="lowerLimbEdema"> Lower limb edema</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="chestPain"> Chest pain</label>
+                                <label>
+                                    <input type="checkbox" name="associatedSymptomsBleeding" value="other"> Other (specify)</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherAssociatedSymptomsBleeding">Other Associated Symptoms with Bleeding</label>
+                            <textarea id="otherAssociatedSymptomsBleeding" name="otherAssociatedSymptomsBleeding"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Previous Treatments or Interventions</label>
+                            <textarea id="previousTreatments" name="previousTreatments"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Response to Previous Treatments</label>
+                            <textarea id="responseToTreatments" name="responseToTreatments"></textarea>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(3)">Previous: PRESENT COMPLAINTS</button>
+                            <button type="button" class="btn-next" onclick="nextSection(3)">Next: PREVIOUS MENSTRUAL HISTORY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: PREVIOUS MENSTRUAL HISTORY -->
+                <div class="section" id="section4">
+                    <div class="section-header">
+                        <h2>Previous Menstrual History</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Document the patient's previous menstrual history, including premenopausal and postmenopausal details.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="menopausalStatus">Menopausal Status</label>
+                            <select id="menopausalStatus" name="menopausalStatus" onchange="toggleMenopauseFields()">
+                                <option value="">Select</option>
+                                <option value="premenopausal">Premenopausal</option>
+                                <option value="perimenopausal">Perimenopausal</option>
+                                <option value="postmenopausal">Postmenopausal</option>
+                            </select>
+                        </div>
+
+                        <div id="premenopausalFields">
+                            <div class="form-group">
+                                <label for="ageOfMenarche">Age of Menarche</label>
+                                <input type="number" id="ageOfMenarche" name="ageOfMenarche" min="0" max="20">
+                            </div>
+                            <div class="form-group">
+                                <label for="regularityOfCycles">Regularity of Menstrual Cycles</label>
+                                <select id="regularityOfCycles" name="regularityOfCycles">
+                                    <option value="">Select</option>
+                                    <option value="regular">Regular</option>
+                                    <option value="irregular">Irregular</option>
+                                    <option value="unpredictable">Unpredictable</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="flow">Flow</label>
+                                <select id="flow" name="flow">
+                                    <option value="">Select</option>
+                                    <option value="scanty">Scanty</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="heavy">Heavy</option>
+                                    <option value="clotting">Clotting</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Painful/Painless Periods</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="painfulPainless" value="painful"> Painful</label>
+                                    <label>
+                                        <input type="radio" name="painfulPainless" value="painless"> Painless</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lmp">Last Menstrual Period (LMP)</label>
+                                <input type="date" id="lmp" name="lmp">
+                            </div>
+                        </div>
+
+                        <div id="postmenopausalFields" style="display:none;">
+                            <div class="form-group">
+                                <label for="ageOfMenopause">Age at Menopause</label>
+                                <input type="number" id="ageOfMenopause" name="ageOfMenopause" min="30" max="60">
+                            </div>
+                            <div class="form-group">
+                                <label>Postmenopausal Bleeding</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="postmenopausalBleeding" value="yes"> Yes</label>
+                                    <label>
+                                        <input type="radio" name="postmenopausalBleeding" value="no"> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Hormone Replacement Therapy (HRT) Use</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="hrtUse" value="yes"> Yes</label>
+                                    <label>
+                                        <input type="radio" name="hrtUse" value="no"> No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(4)">Previous: HISTORY OF PRESENT ILLNESS</button>
+                            <button type="button" class="btn-next" onclick="nextSection(4)">Next: OBSTETRIC HISTORY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function toggleMenopauseFields() {
+                        let status = document.getElementById("menopausalStatus").value;
+                        document.getElementById("premenopausalFields").style.display = (status === "premenopausal" || status === "perimenopausal") ? "block" : "none";
+                        document.getElementById("postmenopausalFields").style.display = (status === "postmenopausal") ? "block" : "none";
+                    }
+                </script>
+
+                <!-- SECTION 5: OBSTETRIC HISTORY -->
+                <div class="section" id="section5">
+                    <div class="section-header">
+                        <h2>Obstetric History</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <!-- Parity -->
+                        <div class="form-group">
+                            <label for="parity">Parity (GxPxAxLx)</label>
+                            <input type="text" id="parity" name="parity" placeholder="Enter Gravida, Para, Abortions, Living Children">
+                        </div>
+
+                        <!-- Abortion History -->
+                        <div class="form-group">
+                            <label for="abortionHistory">History of Abortion</label>
+                            <select id="abortionHistory" name="abortionHistory">
+                                <option value="none">None</option>
+                                <option value="spontaneous">Spontaneous</option>
+                                <option value="induced">Induced</option>
+                            </select>
+                        </div>
+
+                        <!-- Details of Abortion -->
+                        <div class="form-group abortion-details" style="display: none;">
+                            <label>Details of Abortion:</label>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <label for="abortionType">Type of Abortion</label>
+                                    <select id="abortionType" name="abortionType">
+                                        <option value="">Select Type</option>
+                                        <option value="medical">Medical</option>
+                                        <option value="surgical">Surgical</option>
+                                    </select>
+                                </div>
+                                <div class="form-col">
+                                    <label for="abortionPeriod">Period of Amenorrhea/When Abortion Occurred</label>
+                                    <input type="text" id="abortionPeriod" name="abortionPeriod" placeholder="Weeks of pregnancy">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="postAbortalPeriod">Post-Abortal Period</label>
+                                <textarea id="postAbortalPeriod" name="postAbortalPeriod" placeholder="Describe any complications or issues during the post-abortal period..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Vesicular Mole and IUCD Insertion -->
+                        <div class="form-group">
+                            <label>H/O Vesicular Mole</label>
+                            <input type="checkbox" id="vesicularMole" name="vesicularMole">
+                        </div>
+                        <div class="form-group">
+                            <label>H/O IUCD Insertion</label>
+                            <input type="checkbox" id="iucdInsertion" name="iucdInsertion">
+                        </div>
+
+                        <!-- Pregnancy History -->
+                        <div class="form-group">
+                            <label>Pregnancy History</label>
+                            <div id="pregnancyEntries">
+                                <!-- Initial empty entry -->
+                                <div class="pregnancy-entry">
+                                    <button type="button" class="remove-pregnancy-btn" onclick="removePregnancyEntry(this)">Remove</button>
+                                    <div class="form-row">
+                                        <div class="form-col">
+                                            <label for="motherAge">Age of the mother when pregnant</label>
+                                            <input type="number" name="motherAge[]" placeholder="Age">
+                                        </div>
+                                        <div class="form-col">
+                                            <label for="antenatalComplications">Antenatal complications</label>
+                                            <textarea name="antenatalComplications[]"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-col">
+                                            <label for="durationOfPregnancy">Duration of pregnancy</label>
+                                            <input type="text" name="durationOfPregnancy[]" placeholder="Weeks">
+                                        </div>
+                                        <div class="form-col">
+                                            <label for="detailsOfInduction">Details of induction of labour</label>
+                                            <textarea name="detailsOfInduction[]"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-col">
+                                            <label for="durationOfLabour">Duration of labour</label>
+                                            <input type="text" name="durationOfLabour[]" placeholder="Hours">
+                                        </div>
+                                        <div class="form-col">
+                                            <label for="presentationAndDelivery">Presentation and method of delivery</label>
+                                            <input type="text" name="presentationAndDelivery[]" placeholder="Presentation and method">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-col">
+                                            <label for="birthWeight">Birth weight and sex of infant</label>
+                                            <input type="text" name="birthWeight[]" placeholder="Weight and Sex">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="puerperalComplications">Complications of the puerperal period</label>
+                                        <textarea name="puerperalComplications[]"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="add-pregnancy-btn" onclick="addPregnancyEntry()">Add Another Pregnancy</button>
+                        </div>
+
+                        <!-- Contraceptive History
+        <div class="form-group">
+            <label>H/O Contraception - Temporary or Permanent Method</label>
+            <select id="contraceptionMethod" name="contraceptionMethod">
+                <option value="">Select Method</option>
+                <option value="temporary">Temporary</option>
+                <option value="permanent">Permanent</option>
+            </select>
+        </div> -->
+
+                        <!-- Pregnancy Complications -->
+                        <div class="form-group">
+                            <label for="pregnancyComplications">Pregnancy Complications</label>
+                            <textarea id="pregnancyComplications" name="pregnancyComplications" placeholder="Describe any complications during past pregnancies..."></textarea>
+                        </div>
+
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(5)">Previous: Previous Menstrual History</button>
+                            <button type="button" class="btn-next" onclick="nextSection(5)">Next: Contraceptive History</button>
+                        </div>
+                    </div>
+
+                </div>
+                <script>
+                    document.getElementById('abortionHistory').addEventListener('change', function() {
+                        const abortionDetails = document.querySelector('.abortion-details');
+                        if (this.value !== 'none') {
+                            abortionDetails.style.display = 'block';
+                        } else {
+                            abortionDetails.style.display = 'none';
+                        }
+                    });
+                    
+                    function addPregnancyEntry() {
+                        const newEntry = document.querySelector('.pregnancy-entry').cloneNode(true);
+                        newEntry.querySelector('.remove-pregnancy-btn').onclick = function() { removePregnancyEntry(this); };
+                        document.getElementById('pregnancyEntries').appendChild(newEntry);
+                    }
+                    
+                    function removePregnancyEntry(button) {
+                        button.closest('.pregnancy-entry').remove();
+                    }
+                </script>
+
+
+                <!-- SECTION 6: CONTRACEPTIVE HISTORY -->
+                <div class="section" id="section6">
+                    <div class="section-header">
+                        <h2>Contraceptive History</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Document the patient's contraceptive history.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Current Contraceptive Method</label>
+                            <select id="currentContraceptiveMethod" name="currentContraceptiveMethod">
+                                <option value="">Select</option>
+                                <option value="none">None</option>
+                                <option value="oralPills">Oral Contraceptive Pills</option>
+                                <option value="iud">Intrauterine Device (IUD)</option>
+                                <option value="injectable">Injectable Contraceptives</option>
+                                <option value="implant">Implant</option>
+                                <option value="condoms">Condoms</option>
+                                <option value="none">Permanent Sterilization</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contraceptiveDuration">Duration of Current Contraceptive Use</label>
+                            <input type="text" id="contraceptiveDuration" name="contraceptiveDuration">
+                        </div>
+                        <div class="form-group">
+                            <label for="contraceptiveIssues">Any Issues with Contraceptive Use?</label>
+                            <textarea id="contraceptiveIssues" name="contraceptiveIssues" placeholder="Describe any side effects or complications..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Past Contraceptive Methods</label>
+                            <textarea id="pastContraceptiveMethods" name="pastContraceptiveMethods"></textarea>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(6)">Previous: OBSTETRIC HISTORY</button>
+                            <button type="button" class="btn-next" onclick="nextSection(6)">Next: PAST MEDICAL HISTORY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 7: PAST MEDICAL HISTORY -->
+                <div class="section" id="section7">
+                    <div class="section-header">
+                        <h2>Past Medical History</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Document the patient's past medical history.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Chronic Conditions</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="hypertension"> Hypertension</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="diabetes"> Diabetes</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="thyroidDisorders"> Thyroid Disorders</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="cardiovascularDisease"> Cardiovascular Disease</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="respiratoryDisease"> Respiratory Disease</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="gastrointestinalDisease"> Gastrointestinal Disease</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="neurologicalDisease"> Neurological Disease</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="psychiatricDisease"> Psychiatric Disease</label>
+                                <label>
+                                    <input type="checkbox" name="chronicConditions" value="other"> Other (specify)</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherChronicConditions">Other Chronic Conditions</label>
+                            <textarea id="otherChronicConditions" name="otherChronicConditions"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Surgical History</label>
+                            <textarea id="surgicalHistory" name="surgicalHistory"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Allergies</label>
+                            <textarea id="allergies" name="allergies"></textarea>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(7)">Previous: CONTRACEPTIVE HISTORY</button>
+                            <button type="button" class="btn-next" onclick="nextSection(7)">Next: FAMILY HISTORY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 8: FAMILY HISTORY -->
+                <div class="section" id="section8">
+                    <div class="section-header">
+                        <h2>Family History</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Document the patient's family history.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Relevant Family History</label>
+                            <textarea id="relevantFamilyHistory" name="relevantFamilyHistory"></textarea>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(8)">Previous: PAST MEDICAL HISTORY</button>
+                            <button type="button" class="btn-next" onclick="nextSection(8)">Next: EXAMINATION FINDINGS</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 9: EXAMINATION FINDINGS -->
+                <div class="section" id="section9">
+                    <div class="section-header">
+                        <h2>Examination Findings</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-info">
+                            <p>Document the findings from the physical examination.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>General Examination</label>
+                            <textarea id="generalExamination" name="generalExamination"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Abdominal Examination</label>
+                            <textarea id="abdominalExamination" name="abdominalExamination"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Speculum Examination</label>
+                            <textarea id="speculumExamination" name="speculumExamination"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Bimanual Pelvic Examination</label>
+                            <textarea id="bimanualPelvicExamination" name="bimanualPelvicExamination"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Per Rectal Examination</label>
+                            <textarea id="perRectalExamination" name="perRectalExamination"></textarea>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(9)">Previous: FAMILY HISTORY</button>
+                            <button type="button" class="btn-next" onclick="nextSection(9)">Next: SUMMARY AND DIAGNOSIS</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- SECTION 10: SUMMARY AND DIAGNOSIS -->
+                <div class="section" id="section10">
+                    <div class="section-header">
+                        <h2>Summary and Diagnosis</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="alert alert-warning">
+                            <p>This section requires clinical judgment and should be completed by a qualified healthcare provider.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Case Summary</label>
+                            <textarea id="caseSummary" name="caseSummary" placeholder="Summarize key findings..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Differential Diagnosis</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="dysfunctionalUterineBleeding"> Dysfunctional uterine bleeding</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="fibroids"> Uterine fibroids</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="polyps"> Endometrial polyps</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="adenomyosis"> Adenomyosis</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="coagulopathy"> Coagulation disorders</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="endocrine"> Endocrine disorders (PCOS, thyroid)</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="infection"> Pelvic inflammatory disease</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="malignancy"> Endometrial hyperplasia/cancer</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="iatrogenic"> Iatrogenic (medications, IUD)</label>
+                                <label>
+                                    <input type="checkbox" name="differentialDiagnosis" value="other"> Other (specify)</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherDiagnosis">Other/Specify</label>
+                            <input type="text" id="otherDiagnosis" name="otherDiagnosis">
+                        </div>
+                        <div class="form-group">
+                            <label>Investigations Ordered</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="investigations" value="cbc"> Complete blood count</label>
+                                <label>
+                                    <input type="checkbox" name="investigations" value="thyroidFunction"> Thyroid function tests</label>
+                                <label>
+                                    <input type="checkbox" name="investigations" value="coagulationProfile"> Coagulation profile</label>
+                                <label>
+                                    <input type="checkbox" name="investigations" value="hormonalAssessment"> Hormonal assessment</label>
+                                <label>
+                                    <input type="checkbox" name="investigations" value="ultrasound"> Pelvic ultrasound</label>
+                                <label>
+                                    <input type="checkbox" name="investigations" value="endometrialBiopsy"> Endometrial biopsy</label>
+                                <label>
+                                    <input type="checkbox" name="investigations" value="hysteroscopy"> Hysteroscopy</label>
+                                <label>
+                                    <input type="checkbox" name="investigations" value="other"> Other (specify)</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherInvestigations">Other Investigations</label>
+                            <input type="text" id="otherInvestigations" name="otherInvestigations">
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(10)">Previous: Examination Findings</button>
+                            <button type="button" class="btn-submit" onclick="submitForm()">Finalize Assessment</button>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(10)">Previous: FAMILY HISTORY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUMMARY REPORT SECTION -->
+                <div class="summary-container" id="summaryReport">
+                    <div class="summary-section">
+                        <h3>Patient Information</h3>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Name:</span>
+                            <span class="summary-item-value" id="summaryName"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Age:</span>
+                            <span class="summary-item-value" id="summaryAge"></span>
+                        </div>
+                        <!-- Add more patient info fields here -->
+                    </div>
+                    <!-- Add more summary sections for each part of the assessment -->
+                </div>
+
+                <!-- JavaScript Logic -->
+                <script>
+                    let currentSection = 1;
+                    const totalSections = 10;
+                
+                    function showSection(sectionNumber) {
+                        document.querySelectorAll('.section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        document.getElementById(`section${sectionNumber}`).classList.add('active');
+                        updateProgress();
+                    }
+                
+                    function nextSection(current) {
+                        if (validateSection(current)) {
+                            currentSection = current + 1;
+                            showSection(currentSection);
+                        }
+                    }
+                
+                    function prevSection(current) {
+                        currentSection = current - 1;
+                        showSection(currentSection);
+                    }
+                
+                    function updateProgress() {
+                        const progress = (currentSection / totalSections) * 100;
+                        document.getElementById('progressBar').style.width = `${progress}%`;
+                        document.getElementById('currentSection').textContent = 
+                            document.querySelector(`#section${currentSection} h2`).textContent;
+                        document.getElementById('completionStatus').textContent = 
+                            `${Math.round(progress)}% Complete`;
+                    }
+                
+                    function validateSection(sectionNumber) {
+                        // Add validation logic for each section
+                        return true;
+                    }
+                
+                    function submitForm() {
+                        // Add final validation and submission logic
+                        document.getElementById('aubAssessmentForm').style.display = 'none';
+                        document.getElementById('summaryReport').style.display = 'block';
+                        generateSummary();
+                    }
+                
+                    function generateSummary() {
+                        // Populate summary fields from form data
+                        document.getElementById('summaryName').textContent = 
+                            document.getElementById('patientName').value;
+                        // Add more fields here
+                    }
+                
+                    // Add event listeners for conditional fields
+                    document.querySelectorAll('input[name="bloodClots"]').forEach(input => {
+                        input.addEventListener('change', function() {
+                            const clotSizeGroup = document.getElementById('clotSizeGroup');
+                            clotSizeGroup.style.display = this.value === 'yes' ? 'block' : 'none';
+                        });
+                    });
+                    document.querySelectorAll('input[name="painWithBleeding"]').forEach(input => {
+                        input.addEventListener('change', function() {
+                            const painDetails = document.getElementById('painDetails');
+                            painDetails.style.display = this.value === 'yes' ? 'block' : 'none';
+                        });
+                    });
+                    // Add more event listeners for other conditional logic
+                </script>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

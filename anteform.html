@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Abnormal Uterine Bleeding Assessment Tool</title>
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #f39c12;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #9b59b6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .section-header {
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-content {
+            padding: 20px;
+            background-color: white;
+            display: none;
+        }
+        
+        .section.active .section-content {
+            display: block;
+        }
+        
+        .section.active {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #fafafa;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(142, 68, 173, 0.2);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-group label,
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group input,
+        .radio-group input {
+            margin-right: 10px;
+            width: auto;
+        }
+        
+        .help-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-prev {
+            background-color: #e0e0e0;
+            color: #555;
+        }
+        
+        .btn-next {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-submit {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .current-section {
+            font-weight: bold;
+        }
+        
+        .section-badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .section-badge.complete {
+            background-color: var(--success-color);
+        }
+        
+        .section-badge.incomplete {
+            background-color: var(--warning-color);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-col {
+            flex: 1;
+            padding: 0 10px;
+            min-width: 250px;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        
+        .dropdown-select {
+            position: relative;
+        }
+        
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--info-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            cursor: help;
+        }
+        
+        .info-tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            width: 200px;
+            z-index: 1;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+        
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        
+        .rating input {
+            display: none;
+        }
+        
+        .rating label {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            background-color: #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            transition: all 0.2s;
+        }
+        
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .summary-container {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .summary-section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .summary-section h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .summary-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .summary-item-label {
+            font-weight: 500;
+            width: 200px;
+            color: #666;
+        }
+        
+        .summary-item-value {
+            flex: 1;
+        }
+        .sfmpq-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sfmpq-table th,
+        .sfmpq-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .sfmpq-table th {
+            background-color: #f2f2f2;
+        }
+
+        .vas-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .vas-slider {
+            width: 100%;
+            height: 10px;
+            -webkit-appearance: none;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .vas-slider:hover {
+            opacity: 1;
+        }
+
+        .vas-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+		
+		.output {
+max-width: 900px;
+background: #fff;
+padding: 20px;
+margin: 20px auto;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+display: none;
+}
+
+        /* Print styles for the report */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .form-container,
+            .btn-container,
+            .progress-container {
+                display: none;
+            }
+            
+            .summary-container {
+                display: block !important;
+            }
+            
+            header {
+                background: none;
+                color: black;
+                padding: 10px 0;
+                text-align: left;
+                border-bottom: 2px solid #333;
+            }
+            
+            h1 {
+                color: #333;
+            }
+            
+            .summary-section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Comprehensive Abnormal Uterine Bleeding Assessment Tool</h1>
+            <p class="subtitle">A detailed history taking and examination record for gynecology practice</p>
+        </header>
+
+        <div class="form-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentSection">Patient Details</span>
+                    <span id="completionStatus">0% Complete</span>
+                </div>
+            </div>
+ <form id="caseForm">
+    <!-- SECTION 1: PATIENT IDENTIFICATION & DEMOGRAPHY -->
+    <div class="section active" id="section1">
+        <div class="section-header" onclick="showSection(1)">
+            <h2>Patient Identification & Demography</h2>
+            <span class="section-badge incomplete">Incomplete</span>
+        </div>
+        <div class="section-content">
+            <div class="alert alert-info">
+                <p>Complete all demographic and basic information about the patient.</p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="ancRegNo">ANC Reg No</label>
+                        <input type="text" id="ancRegNo" name="ancRegNo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="patientName">Patient Name</label>
+                        <input type="text" id="patientName" name="patientName">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="addiction">Addiction</label>
+                <input type="text" id="addiction" name="addiction">
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="educationalStatus">Educational Status</label>
+                        <input type="text" id="educationalStatus" name="educationalStatus">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <input list="occupationOptions" id="occupation" name="occupation">
+                        <datalist id="occupationOptions">
+                            <option value="Homemaker">
+                            <option value="Labourer">
+                            <option value="Officer">
+                            <option value="Factory Worker">
+                            <option value="Other">
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="socioeconomicStatus">Socioeconomic Status</label>
+                        <input type="text" id="socioeconomicStatus" name="socioeconomicStatus">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="bookedStatus">Booked/Un-booked</label>
+                        <select id="bookedStatus" name="bookedStatus">
+                            <option value="Booked">Booked</option>
+                            <option value="Un-booked">Un-booked</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button type="button" class="btn-next" onclick="nextSection(1)">Next: Husband's Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: HUSBAND'S DETAILS -->
+    <div class="section" id="section2">
+        <div class="section-header" onclick="showSection(2)">
+            <h2>Husband's Details</h2>
+            <span class="section-badge incomplete">Incomplete</span>
+        </div>
+        <div class="section-content">
+            <div class="alert alert-info">
+                <p>Provide details about the husband.</p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="husbandName">Husband's Name</label>
+                        <input type="text" id="husbandName" name="husbandName">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="husbandAge">Husband's Age</label>
+                        <input type="number" id="husbandAge" name="husbandAge">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="husbandEducationalStatus">Husband's Educational Status</label>
+                        <input type="text" id="husbandEducationalStatus" name="husbandEducationalStatus">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="husbandOccupation">Husband's Occupation</label>
+                        <input list="husbandOccupationOptions" id="husbandOccupation" name="husbandOccupation">
+                        <datalist id="husbandOccupationOptions">
+                            <option value="Homemaker">
+                            <option value="Labourer">
+                            <option value="Officer">
+                            <option value="Factory Worker">
+                            <option value="Other">
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button type="button" class="btn-prev" onclick="prevSection(2)">Previous: Patient Identification</button>
+                <button type="button" class="btn-next" onclick="nextSection(2)">Next: Chief Complaints & Present History</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: CHIEF COMPLAINTS & PRESENT HISTORY -->
+    <div class="section" id="section3">
+        <div class="section-header" onclick="showSection(3)">
+            <h2>Chief Complaints & Present History</h2>
+            <span class="section-badge incomplete">Incomplete</span>
+        </div>
+        <div class="section-content">
+            <div class="alert alert-info">
+                <p>Document the chief complaints and history of the present illness.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="chiefComplaints">Chief Complaints</label>
+                <textarea id="chiefComplaints" name="chiefComplaints"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="presentHistory">History of Present Complaints</label>
+                <textarea id="presentHistory" name="presentHistory"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="presentPregnancy">History of Present Pregnancy (Trimester-wise)</label>
+                <textarea id="presentPregnancy" name="presentPregnancy"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="vaccinationStatus">Vaccination Status</label>
+                        <input type="text" id="vaccinationStatus" name="vaccinationStatus">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="dailyCalorieIntake">Daily Calorie Intake</label>
+                        <input type="number" id="dailyCalorieIntake" name="dailyCalorieIntake">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="calorieDeficit">Calorie Deficit (if any)</label>
+                        <input type="number" id="calorieDeficit" name="calorieDeficit">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="appetite">Appetite</label>
+                        <input type="text" id="appetite" name="appetite">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="bladder">Bladder Issues</label>
+                        <input type="text" id="bladder" name="bladder">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="bowel">Bowel Habits</label>
+                        <input type="text" id="bowel" name="bowel">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="domesticViolence">Domestic Violence (if any)</label>
+                <input type="text" id="domesticViolence" name="domesticViolence">
+            </div>
+
+            <div class="form-group">
+                <label for="drugHistory">Drug/Medication History</label>
+                <input type="text" id="drugHistory" name="drugHistory">
+            </div>
+
+            <div class="form-group">
+                <label for="allergies">Allergies</label>
+                <input type="text" id="allergies" name="allergies">
+            </div>
+
+            <div class="btn-container">
+                <button type="button" class="btn-prev" onclick="prevSection(3)">Previous: Husband's Details</button>
+                <button type="button" class="btn-next" onclick="nextSection(3)">Next: Past History</button>
+            </div>
+        </div>
+    </div>
+
+<!-- SECTION 4: Past History -->
+<div class="section" id="section4">
+    <div class="section-header" onclick="showSection(4)">
+        <h2 data-key="step4Title">Past History</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Document the patient's past medical history, surgical history, and blood transfusion history.</p>
+        </div>
+
+        <div class="form-group">
+            <label data-key="pastMedicalHistory" for="pastMedicalHistory">Past Medical History (e.g., TB, Epilepsy):</label>
+            <textarea id="pastMedicalHistory" name="pastMedicalHistory"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="pastSurgicalHistory" for="pastSurgicalHistory">Past Surgical History:</label>
+            <textarea id="pastSurgicalHistory" name="pastSurgicalHistory"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="bloodTransfusion" for="bloodTransfusion">History of Blood Transfusion:</label>
+            <input type="text" id="bloodTransfusion" name="bloodTransfusion">
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(4)">Previous: Present History</button>
+            <button type="button" class="btn-next" onclick="nextSection(4)">Next: General Examination</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 5: General Examination -->
+<div class="section" id="section5">
+    <div class="section-header" onclick="showSection(5)">
+        <h2 data-key="step5Title">General Examination</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Document vital signs and physical examination findings.</p>
+        </div>
+
+        <div class="form-group">
+            <label data-key="build" for="build">Build:</label>
+            <select id="build" name="build">
+                <option value="Well built">Well built</option>
+                <option value="Average">Average</option>
+                <option value="Poor">Poor</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="height" for="height">Height (cm):</label>
+                    <input type="number" id="height" name="height" oninput="updateBMI()">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="weight" for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" name="weight" oninput="updateBMI()">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-key="bmi" for="bmi">BMI:</label>
+            <input type="text" id="bmi" name="bmi" readonly>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="pr" for="pr">Pulse Rate (PR):</label>
+                    <input type="number" id="pr" name="pr">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="rr" for="rr">Respiratory Rate (RR):</label>
+                    <input type="number" id="rr" name="rr">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-key="bp" for="bp">Blood Pressure (BP):</label>
+            <input type="text" id="bp" name="bp">
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="pallor" for="pallor">Pallor:</label>
+                    <input type="text" id="pallor" name="pallor">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="edema" for="edema">Edema:</label>
+                    <input type="text" id="edema" name="edema">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="icterus" for="icterus">Icterus:</label>
+                    <input type="text" id="icterus" name="icterus">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="thyroid" for="thyroid">Thyroid:</label>
+                    <input type="text" id="thyroid" name="thyroid">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-key="breastExam" for="breastExam">Breast Examination:</label>
+            <input type="text" id="breastExam" name="breastExam">
+        </div>
+
+        <div class="form-group">
+            <label data-key="lymphadenopathy" for="lymphadenopathy">Lymphadenopathy:</label>
+            <input type="text" id="lymphadenopathy" name="lymphadenopathy">
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(5)">Previous: Past History</button>
+            <button type="button" class="btn-next" onclick="nextSection(5)">Next: Systemic Examination</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 6: Systemic Examination -->
+<div class="section" id="section6">
+    <div class="section-header" onclick="showSection(6)">
+        <h2 data-key="step6Title">Systemic Examination</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Document findings from cardiovascular, respiratory, and nervous system examinations.</p>
+        </div>
+
+        <div class="form-group">
+            <label data-key="cardio" for="cardio">Cardiovascular System:</label>
+            <input type="text" id="cardio" name="cardio">
+        </div>
+
+        <div class="form-group">
+            <label data-key="respiratory" for="respiratory">Respiratory System:</label>
+            <input type="text" id="respiratory" name="respiratory">
+        </div>
+
+        <div class="form-group">
+            <label data-key="nervous" for="nervous">Nervous System:</label>
+            <input type="text" id="nervous" name="nervous">
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(6)">Previous: General Examination</button>
+            <button type="button" class="btn-next" onclick="nextSection(6)">Next: Obstetric Examination</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 7: Obstetric Examination -->
+<div class="section" id="section7">
+    <div class="section-header" onclick="showSection(7)">
+        <h2 data-key="step7Title">Obstetric Examination</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Document obstetric examination findings including inspection, palpation, and auscultation.</p>
+        </div>
+
+        <div class="form-group">
+            <label data-key="inspection" for="inspection">Inspection (Abdominal Examination):</label>
+            <textarea id="inspection" name="inspection" placeholder="Describe abdominal contour, flanks, umbilicus, scars, etc."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="palpation" for="palpation">Palpation:</label>
+            <textarea id="palpation" name="palpation" placeholder="Include fundal height, symphysio-fundal height, abdominal girth, obstetric grips details"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="auscultation" for="auscultation">Auscultation (Fetal Heart Sounds):</label>
+            <input type="text" id="auscultation" name="auscultation" placeholder="Location, rate, rhythm">
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(7)">Previous: Systemic Examination</button>
+            <button type="button" class="btn-next" onclick="nextSection(7)">Next: Investigations</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 8: Investigations -->
+<div class="section" id="section8">
+    <div class="section-header" onclick="showSection(8)">
+        <h2 data-key="step8Title">Investigations</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Record all relevant laboratory and imaging results.</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="hb" for="hb">Hemoglobin (Hb):</label>
+                    <input type="text" id="hb" name="hb">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="aboRh" for="aboRh">Blood Group (ABO-Rh):</label>
+                    <input type="text" id="aboRh" name="aboRh">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="urineRoutine" for="urineRoutine">Urine Routine & Microscopy:</label>
+                    <input type="text" id="urineRoutine" name="urineRoutine">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="hiv" for="hiv">HIV Test:</label>
+                    <input type="text" id="hiv" name="hiv">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="hbsag" for="hbsag">HBsAg Test:</label>
+                    <input type="text" id="hbsag" name="hbsag">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="vdrl" for="vdrl">VDRL Test:</label>
+                    <input type="text" id="vdrl" name="vdrl">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="ogtt1" for="ogtt1">OGTT 1st (75 gm):</label>
+                    <input type="text" id="ogtt1" name="ogtt1">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label data-key="ogtt2" for="ogtt2">OGTT 2nd (75 gm):</label>
+                    <input type="text" id="ogtt2" name="ogtt2">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-key="thyroidProfile" for="thyroidProfile">Thyroid Profile:</label>
+            <input type="text" id="thyroidProfile" name="thyroidProfile">
+        </div>
+
+        <div class="form-group">
+            <label data-key="urineCulture" for="urineCulture">Urine Culture:</label>
+            <input type="text" id="urineCulture" name="urineCulture">
+        </div>
+
+        <div class="form-group">
+            <label data-key="imaging" for="imaging">Imaging (USG Date, etc.):</label>
+            <input type="date" id="imaging" name="imaging">
+        </div>
+
+        <div class="form-group">
+            <label data-key="others" for="others">Other Investigations:</label>
+            <input type="text" id="others" name="others">
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(8)">Previous: Obstetric Examination</button>
+            <button type="button" class="btn-next" onclick="nextSection(8)">Next: Final Details & Summary</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 9: Final Details & Summary -->
+<div class="section" id="section9">
+    <div class="section-header" onclick="showSection(9)">
+        <h2 data-key="step9Title">Final Details & Summary</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Document final diagnosis, patient advice, and follow-up plans.</p>
+        </div>
+
+        <div class="form-group">
+            <label data-key="riskFactors" for="riskFactors">Risk Factors Identified:</label>
+            <textarea id="riskFactors" name="riskFactors"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="finalDiagnosis" for="finalDiagnosis">Final Diagnosis:</label>
+            <textarea id="finalDiagnosis" name="finalDiagnosis"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="summary" for="summary">Summary:</label>
+            <textarea id="summary" name="summary"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="advice" for="advice">Advice:</label>
+            <textarea id="advice" name="advice"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="followUp" for="followUp">Follow Up:</label>
+            <textarea id="followUp" name="followUp"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-key="planDelivery" for="planDelivery">Plan of Delivery:</label>
+            <textarea id="planDelivery" name="planDelivery"></textarea>
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(9)">Previous: Investigations</button>
+            <button type="button" class="btn-next" onclick="nextSection(9)">Next: Review & Generate</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 10: Review & Generate -->
+<div class="section" id="section10">
+    <div class="section-header" onclick="showSection(10)">
+        <h2 data-key="step10Title">Review & Generate Case Sheet</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Review all entered information before generating the final case sheet.</p>
+        </div>
+
+        <div class="form-group">
+            <div id="reviewSection" class="review-container"></div>
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(10)">Previous: Final Details</button>
+            <button type="button" class="btn-next" onclick="generateFinalSheet()">Generate Case Sheet</button>
+        </div>
+    </div>
+</div>
+
+</form>
+<div id="finalOutput" class="output"></div>
+                <!-- JavaScript Logic -->
+                <script>
+                    let currentSection = 1;
+                    const totalSections = 10;
+                
+                    function showSection(sectionNumber) {
+                        document.querySelectorAll('.section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+						currentSection = sectionNumber;
+                        document.getElementById(`section${sectionNumber}`).classList.add('active');
+                        updateProgress();
+                    }
+                
+                    function nextSection(current) {
+                        if (validateSection(current)) {
+                            currentSection = current + 1;
+                            showSection(currentSection);
+                        }
+                    }
+                
+                    function prevSection(current) {
+                        currentSection = current - 1;
+                        showSection(currentSection);
+                    }
+                
+                    function updateProgress() {
+                        const progress = (currentSection / totalSections) * 100;
+                        document.getElementById('progressBar').style.width = `${progress}%`;
+                        document.getElementById('currentSection').textContent = 
+                            document.querySelector(`#section${currentSection} h2`).textContent;
+                        document.getElementById('completionStatus').textContent = 
+                            `${Math.round(progress)}% Complete`;
+                    }
+                
+                    function validateSection(sectionNumber) {
+                        // Add validation logic for each section
+                        return true;
+                    }
+					// Automatic BMI calculation
+function updateBMI() {
+const height = parseFloat(document.getElementById('height').value);
+const weight = parseFloat(document.getElementById('weight').value);
+if(height > 0 && weight > 0) {
+const bmi = weight / ((height/100) * (height/100));
+document.getElementById('bmi').value = bmi.toFixed(2);
+}
+}
+
+// Populate review section with all form data
+function populateReview() {
+let reviewHTML = "<h3>Review Your Data</h3>";
+const formData = new FormData(document.getElementById('caseForm'));
+for(let [key, value] of formData.entries()){
+reviewHTML += "<p><strong>" + key + ":</strong> " + value + "</p>";
+}
+document.getElementById('reviewSection').innerHTML = reviewHTML;
+}
+
+// Generate final case sheet summary
+function generateFinalSheet() {
+let finalHTML = "<h2>Final Case Sheet</h2>";
+const formData = new FormData(document.getElementById('caseForm'));
+for(let [key, value] of formData.entries()){
+finalHTML += "<p><strong>" + key + ":</strong> " + value + "</p>";
+}
+document.getElementById('finalOutput').innerHTML = finalHTML;
+document.getElementById('finalOutput').style.display = "block";
+// Optionally, integrate PDF export functionality here.
+}
+				</script>
+        </div>
+    </div>
