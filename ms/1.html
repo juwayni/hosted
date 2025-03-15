@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0 20px;
+    color: #333;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>Case Sheet for Maternity Services - L3 Facility</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="maternityForm">
+        <!-- Admission Form -->
+        <section class="admission-form">
+            <h2>Admission Form</h2>
+            <div class="form-group">
+                <label>MCTS No.</label>
+                <input type="text" id="mctsNo" required>
+            </div>
+            <div class="form-group">
+                <label>Booked</label>
+                <input type="radio" id="bookedYes" name="booked" value="Yes"> Yes
+                <input type="radio" id="bookedNo" name="booked" value="No"> No
+            </div>
+            <div class="form-group">
+                <label>IPD/Registration No.</label>
+                <input type="text" id="ipdRegNo">
+            </div>
+            <div class="form-group">
+                <label>BPL/JSSY Registration</label>
+                <input type="radio" id="bplYes" name="bpl" value="Yes"> Yes
+                <input type="radio" id="bplNo" name="bpl" value="No"> No
+            </div>
+            <div class="form-group">
+                <label>Aadhar Card No.</label>
+                <input type="text" id="aadharNo">
+            </div>
+            <div class="form-group">
+                <label>Referred from & Reason</label>
+                <input type="text" id="referredFrom">
+            </div>
+            <div class="form-group">
+                <label>Name of Facility</label>
+                <input type="text" id="facilityName">
+            </div>
+            <div class="form-group">
+                <label>Block</label>
+                <input type="text" id="block">
+            </div>
+            <div class="form-group">
+                <label>District</label>
+                <input type="text" id="district">
+            </div>
+            <div class="form-group">
+                <label>Contact number (facility)</label>
+                <input type="text" id="contactNumber">
+            </div>
+            <div class="form-group">
+                <label>Name of ASHA</label>
+                <input type="text" id="ashaName">
+            </div>
+        </section>
+
+        <!-- Personal Information -->
+        <section class="personal-info">
+            <h2>Personal Information</h2>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" id="age" required>
+            </div>
+            <div class="form-group">
+                <label>W/o OR D/o:</label>
+                <input type="text" id="wifeOrDaughterOf">
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <input type="text" id="address">
+            </div>
+            <div class="form-group">
+                <label>Contact No:</label>
+                <input type="text" id="contactNo">
+            </div>
+            <div class="form-group">
+                <label>Marital status:</label>
+                <input type="text" id="maritalStatus">
+            </div>
+            <div class="form-group">
+                <label>Admission date:</label>
+                <input type="date" id="admissionDate">
+            </div>
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="time" id="admissionTime">
+            </div>
+            <div class="form-group">
+                <label>Name of birth companion:</label>
+                <input type="text" id="birthCompanion">
+            </div>
+            <div class="form-group">
+                <label>Admission category:</label>
+                <input type="checkbox" id="laborPain" name="admissionCategory"> Presented with labor pain
+                <input type="checkbox" id="complications" name="admissionCategory"> Presented with complications of pregnancy
+                <input type="checkbox" id="referred" name="admissionCategory"> Referred in from other facility
+            </div>
+            <div class="form-group">
+                <label>LMP:</label>
+                <input type="date" id="lmp">
+            </div>
+            <div class="form-group">
+                <label>EDD:</label>
+                <input type="date" id="edd">
+            </div>
+            <div class="form-group">
+                <label>Provisional Diagnosis:</label>
+                <input type="text" id="provisionalDiagnosis">
+            </div>
+            <div class="form-group">
+                <label>Final Diagnosis:</label>
+                <input type="text" id="finalDiagnosis">
+            </div>
+            <div class="form-group">
+                <label>Contraception History:</label>
+                <input type="text" id="contraceptionHistory">
+            </div>
+        </section>
+
+        <!-- Delivery Outcome -->
+        <section class="delivery-outcome">
+            <h2>Delivery Outcome</h2>
+            <div class="form-group">
+                <label>Live</label>
+                <input type="checkbox" id="live" name="deliveryOutcome">
+            </div>
+            <div class="form-group">
+                <label>Abortion</label>
+                <input type="checkbox" id="abortion" name="deliveryOutcome">
+            </div>
+            <div class="form-group">
+                <label>Fresh Still Birth</label>
+                <input type="checkbox" id="freshStillBirth" name="deliveryOutcome">
+            </div>
+            <div class="form-group">
+                <label>Macerated Still Birth</label>
+                <input type="checkbox" id="maceratedStillBirth" name="deliveryOutcome">
+            </div>
+            <div class="form-group">
+                <label>Sex of Baby:</label>
+                <input type="radio" id="male" name="sexOfBaby" value="Male"> Male
+                <input type="radio" id="female" name="sexOfBaby" value="Female"> Female
+            </div>
+            <div class="form-group">
+                <label>Preterm:</label>
+                <input type="radio" id="pretermYes" name="preterm" value="Yes"> Yes
+                <input type="radio" id="pretermNo" name="preterm" value="No"> No
+            </div>
+            <div class="form-group">
+                <label>Single</label>
+                <input type="checkbox" id="single" name="deliveryOutcome">
+            </div>
+            <div class="form-group">
+                <label>Twin/Multiple</label>
+                <input type="checkbox" id="twinMultiple" name="deliveryOutcome">
+            </div>
+            <div class="form-group">
+                <label>Birth weight (in kgs):</label>
+                <input type="number" id="birthWeight">
+            </div>
+            <div class="form-group">
+                <label>Inj.Vit.K1</label>
+                <input type="checkbox" id="vitK1" name="deliveryOutcome">
+            </div>
+            <div class="form-group">
+                <label>Delivery date:</label>
+                <input type="date" id="deliveryDate">
+            </div>
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="time" id="deliveryTime">
+            </div>
+            <div class="form-group">
+                <label>Immunization: BCG</label>
+                <input type="checkbox" id="bcg" name="immunization">
+            </div>
+            <div class="form-group">
+                <label>OPV</label>
+                <input type="checkbox" id="opv" name="immunization">
+            </div>
+            <div class="form-group">
+                <label>HepB</label>
+                <input type="checkbox" id="hepb" name="immunization">
+            </div>
+            <div class="form-group">
+                <label>Mode of Delivery/Procedure:</label>
+                <input type="radio" id="normal" name="modeOfDelivery" value="Normal"> Normal
+                <input type="radio" id="assisted" name="modeOfDelivery" value="Assisted"> Assisted
+                <input type="radio" id="cs" name="modeOfDelivery" value="CS"> CS
+                <input type="radio" id="other" name="modeOfDelivery" value="Other"> Other
+                <input type="text" id="otherSpecify" placeholder="(specify)">
+            </div>
+            <div class="form-group">
+                <label>Indication for assisted/LSCS/Others</label>
+                <input type="text" id="indication">
+            </div>
+            <div class="form-group">
+                <label>Final outcome:</label>
+                <input type="text" id="finalOutcome">
+            </div>
+        </section>
+
+        <!-- Final Section -->
+        <section class="final-section">
+            <h2>Final Section</h2>
+            <div class="form-group">
+                <label>Name and signature of service provider:</label>
+                <input type="text" id="serviceProvider" required>
+            </div>
+            <div class="form-group">
+                <label>Designation:</label>
+                <input type="text" id="designation" required>
+            </div>
+            <div class="form-group">
+                <label>Phone No:</label>
+                <input type="text" id="phoneNo">
+            </div>
+            <div class="form-group">
+                <label>Date & Time:</label>
+                <input type="datetime-local" id="dateTime">
+            </div>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="2.html" class="next">Next &raquo;</a>
+
+    <!--<script src="script.js"></script>-->
+	
+</body>
+</html>

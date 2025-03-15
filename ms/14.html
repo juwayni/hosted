@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet - Page 14</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1, h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>SAFE CHILDBIRTH CHECKLIST - Page 14</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="beforeDischargeForm">
+        <!-- Before Discharge -->
+        <section class="before-discharge">
+            <h2>CHECK-4: Before Discharge</h2>
+
+            <!-- Is Mother's bleeding controlled? -->
+            <div class="form-group">
+                <label>Is Mother's bleeding controlled?</label>
+                <input type="radio" id="bleedingControlledYes" name="bleedingControlled" value="Yes"> Yes
+                <input type="radio" id="bleedingControlledNo" name="bleedingControlled" value="No"> No
+            </div>
+
+            <!-- Does mother need antibiotics? -->
+            <div class="form-group">
+                <label>Does mother need antibiotics?</label>
+                <input type="radio" id="antibioticsYes" name="antibiotics" value="Yes"> Yes, give and delay discharge
+                <input type="radio" id="antibioticsNo" name="antibiotics" value="No"> No
+            </div>
+
+            <!-- Give antibiotics to mother if -->
+            <div class="form-group">
+                <label>Give antibiotics to mother if:</label>
+                <ul>
+                    <li><input type="checkbox" id="motherTemperature"> Mother has temperature ≥38°C or ≥100.5°F with any of:</li>
+                    <ul>
+                        <li><input type="checkbox" id="chills"> Chills</li>
+                        <li><input type="checkbox" id="foulSmellingVaginalDischarge"> Foul-smelling vaginal discharge</li>
+                        <li><input type="checkbox" id="lowerAbdominalTenderness"> Lower abdominal tenderness</li>
+                    </ul>
+                </ul>
+            </div>
+
+            <!-- Does baby need antibiotics? -->
+            <div class="form-group">
+                <label>Does baby need antibiotics?</label>
+                <input type="radio" id="babyAntibioticsYes" name="babyAntibiotics" value="Yes"> Yes, give, delay discharge and refer to FRU/ higher centre
+                <input type="radio" id="babyAntibioticsNo" name="babyAntibiotics" value="No"> No
+            </div>
+
+            <!-- Give baby antibiotics if -->
+            <div class="form-group">
+                <label>Give baby antibiotics if baby has any of:</label>
+                <ul>
+                    <li><input type="checkbox" id="breathingTooFast"> Breathing too fast (>60/min) or too slow (<30/min)</li>
+                    <li><input type="checkbox" id="chestInDrawing"> Chest in-drawing, grunting</li>
+                    <li><input type="checkbox" id="convulsions"> Convulsions</li>
+                    <li><input type="checkbox" id="looksSick"> Looks sick (lethargic or irritable)</li>
+                    <li><input type="checkbox" id="tooCold"> Too cold (baby's temp <36°C and not rising after warming)</li>
+                    <li><input type="checkbox" id="tooHot"> Too hot (baby's temp >38°C)</li>
+                    <li><input type="checkbox" id="stoppedBreastfeeding"> Stopped breastfeeding</li>
+                    <li><input type="checkbox" id="umbilicalRedness"> Umbilical redness extending to skin or draining pus</li>
+                </ul>
+            </div>
+
+            <!-- Is baby feeding well? -->
+            <div class="form-group">
+                <label>Is baby feeding well?</label>
+                <input type="radio" id="feedingWellYes" name="feedingWell" value="Yes"> Yes, encourage mother for exclusive breastfeeding for 6 months
+                <input type="radio" id="feedingWellNo" name="feedingWell" value="No"> No, help mother, delay discharge, refer to NBSU/SNCU/Higher centre if needed
+            </div>
+
+            <!-- Discuss and offer family planning options to mother -->
+            <div class="form-group">
+                <label>Discuss and offer family planning options to mother</label>
+                <input type="checkbox" id="familyPlanningOptions">
+            </div>
+
+            <!-- Confirm post delivery stay at facility -->
+            <div class="form-group">
+                <label>Confirm post delivery stay at facility for 48 hours in normal delivery and 7 days in C-section cases</label>
+                <input type="checkbox" id="postDeliveryStay">
+            </div>
+
+            <!-- Explain the danger signs -->
+            <div class="form-group">
+                <label>Explain the danger signs and confirm mother/companion will seek help/come back if danger signs are present after discharge</label>
+                <input type="checkbox" id="dangerSignsExplanation">
+            </div>
+
+            <!-- Arrange transport to home -->
+            <div class="form-group">
+                <label>Arrange transport to home and follow-up for mother and baby</label>
+                <input type="checkbox" id="transportArrangement">
+            </div>
+
+            <!-- Danger Signs -->
+            <section class="danger-signs">
+                <h3>Danger Signs</h3>
+
+                <!-- Mother has any of -->
+                <div class="form-group">
+                    <label>Mother has any of:</label>
+                    <ul>
+                        <li><input type="checkbox" id="excessiveBleeding"> Excessive bleeding</li>
+                        <li><input type="checkbox" id="severeAbdominalPain"> Severe abdominal pain</li>
+                        <li><input type="checkbox" id="severeHeadache"> Severe headache or visual disturbance</li>
+                        <li><input type="checkbox" id="breathingDifficulty"> Breathing difficulty</li>
+                        <li><input type="checkbox" id="feverChills"> Fever or chills</li>
+                        <li><input type="checkbox" id="difficultyEmptyingBladder"> Difficulty emptying bladder</li>
+                        <li><input type="checkbox" id="foulSmellingVaginalDischarge"> Foul smelling vaginal discharge</li>
+                    </ul>
+                </div>
+
+                <!-- Baby has any of -->
+                <div class="form-group">
+                    <label>Baby has any of:</label>
+                    <ul>
+                        <li><input type="checkbox" id="fastDifficultyBreathing"> Fast/difficulty breathing</li>
+                        <li><input type="checkbox" id="fever"> Fever</li>
+                        <li><input type="checkbox" id="unusuallyCold"> Unusually cold</li>
+                        <li><input type="checkbox" id="stopsFeedingWell"> Stops feeding well</li>
+                        <li><input type="checkbox" id="lessActivity"> Less activity than normal</li>
+                        <li><input type="checkbox" id="wholeBodyYellow"> Whole body becomes yellow</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Thank you message -->
+            <div class="form-group">
+                <p>Thank mother for availing services from you</p>
+            </div>
+
+            <!-- Name of Provider, Date, Signature -->
+            <div class="form-group">
+                <label>Name of Provider:</label>
+                <input type="text" id="providerName">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label>Signature:</label>
+                <input type="text" id="signature">
+            </div>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="13.html" class="previous">&laquo; Previous</a>
+<a href="15.html" class="next">Next &raquo;</a>
+    <!--<script src="script.js"></script>-->
+</body>
+</html>

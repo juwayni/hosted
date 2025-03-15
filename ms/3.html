@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet - Page 3</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0 20px;
+    color: #333;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>SAFE CHILDBIRTH CHECKLIST - Page 3</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="maternityFormPage3">
+        <!-- Check-1: On Admission -->
+        <section class="check-on-admission">
+            <h2>CHECK-1: On Admission</h2>
+
+            <!-- Does Mother need referral? -->
+            <div class="form-group">
+                <label>Does Mother need referral?</label>
+                <input type="radio" id="referralYes" name="referral" value="Yes"> Yes, organized
+                <input type="radio" id="referralNo" name="referral" value="No"> No
+            </div>
+
+            <!-- Paragraph started? -->
+            <div class="form-group">
+                <label>Paragraph started?</label>
+                <input type="radio" id="paragraphYes" name="paragraph" value="Yes"> Yes
+                <input type="radio" id="paragraphNo" name="paragraph" value="No"> No, will start when ≥4 cm
+            </div>
+
+            <!-- Does Mother need Antibiotics? -->
+            <div class="form-group">
+                <label>Does Mother need Antibiotics?</label>
+                <input type="radio" id="antibioticsYes" name="antibiotics" value="Yes"> Yes, given
+                <input type="radio" id="antibioticsNo" name="antibiotics" value="No"> No
+            </div>
+
+            <!-- Inj. Magnesium Sulfate? -->
+            <div class="form-group">
+                <label>Inj. Magnesium Sulfate?</label>
+                <input type="radio" id="magnesiumSulfateYes" name="magnesiumSulfate" value="Yes"> Yes, given
+                <input type="radio" id="magnesiumSulfateNo" name="magnesiumSulfate" value="No"> No
+            </div>
+
+            <!-- Corticosteroid? -->
+            <div class="form-group">
+                <label>Corticosteroid?</label>
+                <input type="radio" id="corticosteroidYes" name="corticosteroid" value="Yes"> Yes, given
+                <input type="radio" id="corticosteroidNo" name="corticosteroid" value="No"> No
+            </div>
+
+            <!-- HIV status of the mother -->
+            <div class="form-group">
+                <label>HIV status of the mother:</label>
+                <input type="radio" id="hivPositive" name="hivStatus" value="Positive"> Positive
+                <input type="radio" id="hivNegative" name="hivStatus" value="Negative"> Negative
+                <input type="checkbox" id="followUniversalPrecautions"> Follow Universal Precautions
+            </div>
+
+            <!-- Encouraged a birth companion to be present during labour, at birth and till discharge -->
+            <div class="form-group">
+                <label>Encouraged a birth companion to be present during labour, at birth and till discharge</label>
+                <input type="radio" id="birthCompanionYes" name="birthCompanion" value="Yes"> Yes
+                <input type="radio" id="birthCompanionNo" name="birthCompanion" value="No"> No
+            </div>
+
+            <!-- Are soap, water, gloves available? -->
+            <div class="form-group">
+                <label>Are soap, water, gloves available?</label>
+                <input type="radio" id="soapWaterGlovesYes" name="soapWaterGloves" value="Yes"> Yes, I will wash hands and wear gloves for each vaginal exam
+                <input type="radio" id="soapWaterGlovesNo" name="soapWaterGloves" value="No"> No, supplies arranged
+            </div>
+
+            <!-- Confirm if mother or companion will call for help during labour if needed -->
+            <div class="form-group">
+                <label>Confirm if mother or companion will call for help during labour if needed</label>
+                <input type="checkbox" id="callForHelp"> Call for help if there is:
+                <ul>
+                    <li><input type="checkbox" id="bleeding"> Bleeding</li>
+                    <li><input type="checkbox" id="severeAbdominalPain"> Severe abdominal pain</li>
+                    <li><input type="checkbox" id="difficultyInBreathing"> Difficulty in breathing</li>
+                    <li><input type="checkbox" id="severeHeadache"> Severe headache or blurring vision</li>
+                    <li><input type="checkbox" id="urgeToPush"> Urge to push</li>
+                    <li><input type="checkbox" id="cantEmptyBladder"> Can't empty bladder every 2 hours</li>
+                </ul>
+            </div>
+
+            <!-- Counsel Mother and Birth Companion on -->
+            <div class="form-group">
+                <label>Counsel Mother and Birth Companion on:</label>
+                <ul>
+                    <li><input type="checkbox" id="copeWithLabourPains"> Support to cope with labour pains</li>
+                    <li><input type="checkbox" id="noBathOil"> No bath/oil for baby</li>
+                    <li><input type="checkbox" id="noPreLactealFeed"> No Pre-Lacteal feed</li>
+                    <li><input type="checkbox" id="initiateBreastfeeding"> Initiate breastfeeding in half-an-hour</li>
+                    <li><input type="checkbox" id="clothAndWrap"> Cloth and wrap the baby</li>
+                </ul>
+            </div>
+
+            <!-- Refer to FRU/Higher centre if any of following danger signs are present, mention reason and given treatment on transfer note -->
+            <div class="form-group">
+                <label>Refer to FRU/Higher centre if any of following danger signs are present, mention reason and given treatment on transfer note:</label>
+                <ul>
+                    <li><input type="checkbox" id="vaginalBleeding"> Vaginal bleeding</li>
+                    <li><input type="checkbox" id="severeAbdominalPain"> Severe abdominal pain</li>
+                    <li><input type="checkbox" id="highFever"> High fever</li>
+                    <li><input type="checkbox" id="historyOfHeartDisease"> History of heart disease or other major illnesses</li>
+                    <li><input type="checkbox" id="severeHeadache"> Severe headache or blurred vision</li>
+                    <li><input type="checkbox" id="difficultyInBreathing"> Difficulty in breathing</li>
+                    <li><input type="checkbox" id="convulsions"> Convulsions</li>
+                </ul>
+            </div>
+
+            <!-- Give antibiotics to Mother if -->
+            <div class="form-group">
+                <label>Give antibiotics to Mother if:</label>
+                <ul>
+                    <li><input type="checkbox" id="motherTemperature"> Mother’s temperature >38°C (>100.5°F)</li>
+                    <li><input type="checkbox" id="foulSmellingVaginalDischarge"> Foul-smelling vaginal discharge</li>
+                    <li><input type="checkbox" id="ruptureOfMembranes"> Rupture of membranes >12 hrs without labour or >18 hrs with labour</li>
+                    <li><input type="checkbox" id="labourDuration"> Labour >24 hrs or obstructed labour</li>
+                    <li><input type="checkbox" id="ruptureOfMembranesGestation"> Rupture of membranes >37 wks gestation</li>
+                </ul>
+            </div>
+
+            <!-- Give first dose of inj. magnesium sulfate and refer immediately to FRU/Higher center OR give full dose (loading and then maintenance) if at FRU if -->
+            <div class="form-group">
+                <label>Give first dose of inj. magnesium sulfate and refer immediately to FRU/Higher center OR give full dose (loading and then maintenance) if at FRU if:</label>
+                <ul>
+                    <li><input type="checkbox" id="motherTemperatureHigh"> Mother has systolic BP ≥160 or diastolic ≥110 with proteinuria ≥+3 proteinuria ≥140 or diastolic ≥90 with proteinuria trace to +2 along with any of:</li>
+                    <li><input type="checkbox" id="presenceOfAnySymptom"> Presence of any symptom like:</li>
+                    <ul>
+                        <li><input type="checkbox" id="severeHeadache"> Severe headache</li>
+                        <li><input type="checkbox" id="blurringOfVision"> Blurring of vision</li>
+                        <li><input type="checkbox" id="difficultyInBreathing"> Difficulty in breathing</li>
+                        <li><input type="checkbox" id="painUnderRibs"> Pain under ribs</li>
+                        <li><input type="checkbox" id="oliguria"> Oliguria (passing <400 ml urine in 24 hrs)</li>
+                        <li><input type="checkbox" id="convulsions"> Convulsions</li>
+                    </ul>
+                </ul>
+            </div>
+
+            <!-- Give corticosteriods in antenatal period (between 24 to 34 weeks) to mothers if -->
+            <div class="form-group">
+                <label>Give corticosteriods in antenatal period (between 24 to 34 weeks) to mothers if:</label>
+                <ul>
+                    <li><input type="checkbox" id="preTermLabour"> Pre-term labour</li>
+                    <li><input type="checkbox" id="conditionsLeadToImmediateDelivery"> Conditions that lead to immediate delivery like APH, Premature PROM, Severe PE/E</li>
+                    <li><input type="checkbox" id="dose"> Dose: Inj. Dexamethasone 6 mg IM 12 hourly - total 4 doses</li>
+                </ul>
+            </div>
+
+            <!-- If HIV+ and in labour -->
+            <div class="form-group">
+                <label>If HIV+ and in labour:</label>
+                <ul>
+                    <li><input type="checkbox" id="ifMotherOnART"> If mother is on ART, continue same</li>
+                    <li><input type="checkbox" id="ifNotOnARTStartART"> If not on ART, start ART</li>
+                    <li><input type="checkbox" id="referImmediatelyAfterDelivery"> If ART is not available, refer immediately after delivery to ICTC/ART Centre/Link ART Centre for further HIV management</li>
+                    <li><input type="checkbox" id="recommendHIVTesting"> If HIV status unknown, Recommend HIV testing</li>
+                </ul>
+            </div>
+
+            <!-- Name of Provider, Date, Signature -->
+            <div class="form-group">
+                <label>Name of Provider:</label>
+                <input type="text" id="providerName">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label>Signature:</label>
+                <input type="text" id="signature">
+            </div>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="2.html" class="previous">&laquo; Previous</a>
+<a href="4.html" class="next">Next &raquo;</a>
+
+    <script src="script.js"></script>
+</body>
+</html>

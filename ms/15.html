@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet - Page 15</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0 20px;
+    color: #333;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>Discharge Notes - Page 15</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="dischargeNotesForm">
+        <!-- Discharge Notes -->
+        <section class="discharge-notes">
+            <h2>Discharge Notes</h2>
+
+            <!-- Condition at Discharge -->
+            <div class="form-group">
+                <label>Final outcome:</label>
+                <input type="radio" id="discharged" name="finalOutcome" value="Discharged"> Discharged
+                <input type="radio" id="referredOut" name="finalOutcome" value="Referred out"> Referred out
+            </div>
+
+            <!-- Condition of mother -->
+            <div class="form-group">
+                <label>Condition of mother:</label>
+                <input type="text" id="conditionOfMother" placeholder="Live and healthy">
+                <input type="checkbox" id="maternalDeath"> Maternal death
+            </div>
+
+            <!-- BP and Temperature of mother -->
+            <div class="form-group">
+                <label>BP of mother:</label>
+                <input type="number" id="bpOfMother" placeholder="mmHg">
+                <label>Temperature of mother:</label>
+                <input type="number" id="temperatureOfMother" placeholder="°C/°F">
+            </div>
+
+            <!-- Condition of baby -->
+            <div class="form-group">
+                <label>Condition of baby:</label>
+                <input type="text" id="conditionOfBaby" placeholder="Live and healthy">
+                <input type="checkbox" id="newbornDeath"> Newborn death
+                <input type="checkbox" id="referredToSNCU"> Referred to SNCU
+            </div>
+
+            <!-- Temperature and Respiratory rate of baby -->
+            <div class="form-group">
+                <label>Temperature of baby:</label>
+                <input type="number" id="temperatureOfBaby" placeholder="°C/°F">
+                <label>Respiratory rate of baby:</label>
+                <input type="number" id="respiratoryRateOfBaby" placeholder="/min">
+            </div>
+
+            <!-- Advise at Discharge -->
+            <div class="form-group">
+                <label>Counselling on danger signs done:</label>
+                <input type="radio" id="counsellingYes" name="counselling" value="Yes"> Yes
+                <input type="radio" id="counsellingNo" name="counselling" value="No"> No
+            </div>
+
+            <!-- Family Planning method adopted -->
+            <div class="form-group">
+                <label>Family Planning method adopted:</label>
+                <input type="checkbox" id="ppiucd"> PPIUCD
+                <input type="checkbox" id="pps"> PPS
+                <input type="checkbox" id="lam"> LAM
+                <input type="checkbox" id="condom"> Condom
+                <input type="checkbox" id="none"> None
+                <input type="text" id="othersSpecify" placeholder="Others (specify)">
+            </div>
+
+            <!-- Other notes -->
+            <div class="form-group">
+                <label>Other notes:</label>
+                <textarea id="otherNotes"></textarea>
+            </div>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="14.html" class="previous">&laquo; Previous</a>
+<a href="16.html" class="next">Next &raquo;</a>
+    <!--<script src="script.js"></script>-->
+</body>
+</html>

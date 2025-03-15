@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet - Page 2</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0 20px;
+    color: #333;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>Case Sheet for Maternity Services - L3 Facility (Page 2)</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="maternityFormPage2">
+        <!-- Presenting Complaints -->
+        <section class="presenting-complaints">
+            <h2>Presenting Complaints</h2>
+            <div class="form-group">
+                <label>Presenting complaints:</label>
+                <textarea id="presentingComplaints"></textarea>
+            </div>
+        </section>
+
+        <!-- Past Obstetrics History -->
+        <section class="past-obstetrics-history">
+            <h2>Past Obstetrics History</h2>
+            <div class="form-group">
+                <label>APH:</label>
+                <input type="checkbox" id="aph">
+            </div>
+            <div class="form-group">
+                <label>PPH:</label>
+                <input type="checkbox" id="pph">
+            </div>
+            <div class="form-group">
+                <label>P/E:</label>
+                <input type="checkbox" id="pe">
+            </div>
+            <div class="form-group">
+                <label>C-section:</label>
+                <input type="checkbox" id="cSection">
+            </div>
+            <div class="form-group">
+                <label>Obstructed labor:</label>
+                <input type="checkbox" id="obstructedLabor">
+            </div>
+            <div class="form-group">
+                <label>Still births:</label>
+                <input type="checkbox" id="stillBirths">
+            </div>
+            <div class="form-group">
+                <label>Congenital anomaly:</label>
+                <input type="checkbox" id="congenitalAnomaly">
+            </div>
+            <div class="form-group">
+                <label>Anemia:</label>
+                <input type="checkbox" id="anemia">
+            </div>
+            <div class="form-group">
+                <label>Others (Specify):</label>
+                <input type="text" id="othersSpecify">
+            </div>
+        </section>
+
+        <!-- Medical/Surgical History -->
+        <section class="medical-surgical-history">
+            <h2>Medical/Surgical History</h2>
+            <div class="form-group">
+                <label>(Please specify):</label>
+                <input type="text" id="medicalSurgicalHistory">
+            </div>
+        </section>
+
+        <!-- Family H/o Chronic Illness -->
+        <section class="family-chronic-illness">
+            <h2>Family H/o Chronic Illness</h2>
+            <div class="form-group">
+                <label>(Please specify):</label>
+                <input type="text" id="familyChronicIllness">
+            </div>
+        </section>
+
+        <!-- Date and Time of Onset of Labor -->
+        <section class="onset-of-labor">
+            <h2>Date and Time of Onset of Labor</h2>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="onsetDate">
+            </div>
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="time" id="onsetTime">
+            </div>
+        </section>
+
+        <!-- Gravida, Parity, Abortion, Living Children -->
+        <section class="gravida-parity">
+            <h2>Gravida, Parity, Abortion, Living Children</h2>
+            <div class="form-group">
+                <label>Gravida:</label>
+                <input type="number" id="gravida">
+            </div>
+            <div class="form-group">
+                <label>Parity:</label>
+                <input type="number" id="parity">
+            </div>
+            <div class="form-group">
+                <label>Abortion:</label>
+                <input type="number" id="abortion">
+            </div>
+            <div class="form-group">
+                <label>Living children:</label>
+                <input type="number" id="livingChildren">
+            </div>
+        </section>
+
+        <!-- General Examination -->
+        <section class="general-examination">
+            <h2>General Examination</h2>
+            <div class="form-group">
+                <label>Height:</label>
+                <input type="number" id="height"> cms
+            </div>
+            <div class="form-group">
+                <label>Weight:</label>
+                <input type="number" id="weight"> kgs
+            </div>
+            <div class="form-group">
+                <label>Pallor:</label>
+                <input type="text" id="pallor">
+            </div>
+            <div class="form-group">
+                <label>Icterus:</label>
+                <input type="text" id="icterus">
+            </div>
+            <div class="form-group">
+                <label>Pedal Edema:</label>
+                <input type="text" id="pedalEdema">
+            </div>
+        </section>
+
+        <!-- Vitals -->
+        <section class="vitals">
+            <h2>Vitals</h2>
+            <div class="form-group">
+                <label>BP:</label>
+                <input type="text" id="bp"> mmHg
+            </div>
+            <div class="form-group">
+                <label>Temperature:</label>
+                <input type="number" id="temperature"> °C/°F
+            </div>
+            <div class="form-group">
+                <label>Pulse:</label>
+                <input type="number" id="pulse"> /min
+            </div>
+            <div class="form-group">
+                <label>Respiratory rate:</label>
+                <input type="number" id="respiratoryRate"> /min
+            </div>
+            <div class="form-group">
+                <label>FHR:</label>
+                <input type="number" id="fhr"> /min
+            </div>
+        </section>
+
+        <!-- PA Examination -->
+        <section class="pa-examination">
+            <h2>PA Examination</h2>
+            <div class="form-group">
+                <label>Presentation:</label>
+                <input type="radio" id="cephalic" name="presentation"> Cephalic
+                <input type="radio" id="otherPresentation" name="presentation"> Others
+                <input type="text" id="otherPresentationSpecify" placeholder="(specify)">
+            </div>
+            <div class="form-group">
+                <label>Engagement:</label>
+                <input type="text" id="engagement">
+            </div>
+            <div class="form-group">
+                <label>Lie:</label>
+                <input type="text" id="lie">
+            </div>
+        </section>
+
+        <!-- Gestational Age -->
+        <section class="gestational-age">
+            <h2>Gestational Age</h2>
+            <div class="form-group">
+                <label>Pre-term:</label>
+                <input type="radio" id="preTermYes" name="preTerm" value="Yes"> Yes
+                <input type="radio" id="preTermNo" name="preTerm" value="No"> No
+            </div>
+            <div class="form-group">
+                <label>Antenatal corticosteroid given:</label>
+                <input type="radio" id="corticosteroidYes" name="corticosteroid" value="Yes"> Yes
+                <input type="radio" id="corticosteroidNo" name="corticosteroid" value="No"> No
+            </div>
+            <div class="form-group">
+                <label>LMP:</label>
+                <input type="date" id="lmp">
+            </div>
+            <div class="form-group">
+                <label>EDD:</label>
+                <input type="date" id="edd">
+            </div>
+            <div class="form-group">
+                <label>Fundal height (in wks):</label>
+                <input type="number" id="fundalHeight">
+            </div>
+            <div class="form-group">
+                <label>Final estimated Gestational Age (in wks):</label>
+                <input type="number" id="gestationalAge">
+            </div>
+            <div class="form-group">
+                <label>Age from USG:</label>
+                <input type="number" id="ageFromUSG">
+            </div>
+        </section>
+
+        <!-- PV Examination -->
+        <section class="pv-examination">
+            <h2>PV Examination</h2>
+            <div class="form-group">
+                <label>No. of PV Examinations:</label>
+                <input type="number" id="pvExaminations">
+            </div>
+            <div class="form-group">
+                <label>Cervical dilatation:</label>
+                <input type="number" id="cervicalDilatation"> (in cms)
+            </div>
+            <div class="form-group">
+                <label>Membranes:</label>
+                <input type="radio" id="membranesRuptured" name="membranes" value="Ruptured"> Ruptured
+                <input type="radio" id="membranesIntact" name="membranes" value="Intact"> Intact
+            </div>
+            <div class="form-group">
+                <label>Cervical effacement:</label>
+                <input type="number" id="cervicalEffacement"> (%)
+            </div>
+            <div class="form-group">
+                <label>Colour of amniotic fluid:</label>
+                <input type="radio" id="fluidClear" name="amnioticFluid" value="Clear"> Clear
+                <input type="radio" id="fluidMeconium" name="amnioticFluid" value="Meconium"> Meconium
+                <input type="radio" id="fluidBlood" name="amnioticFluid" value="Blood"> Blood
+            </div>
+            <div class="form-group">
+                <label>Pelvis adequate:</label>
+                <input type="radio" id="pelvisAdequateYes" name="pelvisAdequate" value="Yes"> Yes
+                <input type="radio" id="pelvisAdequateNo" name="pelvisAdequate" value="No"> No
+            </div>
+        </section>
+
+        <!-- Investigations -->
+        <section class="investigations">
+            <h2>Investigations</h2>
+            <div class="form-group">
+                <label>Blood Group & Rh:</label>
+                <input type="text" id="bloodGroupRh">
+            </div>
+            <div class="form-group">
+                <label>Hb:</label>
+                <input type="number" id="hb">
+            </div>
+            <div class="form-group">
+                <label>Urine Protein:</label>
+                <input type="text" id="urineProtein">
+            </div>
+            <div class="form-group">
+                <label>Urine Sugar:</label>
+                <input type="text" id="urineSugar">
+            </div>
+            <div class="form-group">
+                <label>HIV:</label>
+                <input type="text" id="hiv">
+            </div>
+            <div class="form-group">
+                <label>Syphilis:</label>
+                <input type="text" id="syphilis">
+            </div>
+            <div class="form-group">
+                <label>HBsAg:</label>
+                <input type="text" id="hbsag">
+            </div>
+            <div class="form-group">
+                <label>Malaria:</label>
+                <input type="text" id="malaria">
+            </div>
+            <div class="form-group">
+                <label>Others:</label>
+                <input type="text" id="others">
+            </div>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="1.html" class="previous">&laquo; Previous</a>
+<a href="3.html" class="next">Next &raquo;</a>
+    <!--<script src="script.js"></script>-->
+</body>
+</html>

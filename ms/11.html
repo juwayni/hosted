@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet - Page 11</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1, h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>DELIVERY NOTES - Page 11</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="deliveryNotesForm">
+        <!-- Delivery Notes -->
+        <section class="delivery-notes">
+            <h2>DELIVERY NOTES</h2>
+
+            <div class="form-group">
+                <label>Delivery date:</label>
+                <input type="date" id="deliveryDate">
+            </div>
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="time" id="deliveryTime">
+            </div>
+
+            <!-- Type of delivery -->
+            <div class="form-group">
+                <label>Type of delivery:</label>
+                <input type="radio" id="normal" name="typeOfDelivery" value="Normal"> Normal
+                <input type="radio" id="lscs" name="typeOfDelivery" value="LSCS"> LSCS
+                <input type="radio" id="assistedVacuum" name="typeOfDelivery" value="Assisted: Vacuum"> Assisted: Vacuum
+                <input type="radio" id="forceps" name="typeOfDelivery" value="Forceps"> Forceps
+                <input type="text" id="otherTypeOfDelivery" placeholder="Others (specify)">
+            </div>
+
+            <!-- Outcome -->
+            <div class="form-group">
+                <label>Outcome:</label>
+                <input type="radio" id="liveBirth" name="outcome" value="Live birth"> Live birth
+                <input type="radio" id="abortion" name="outcome" value="Abortion"> Abortion
+                <input type="radio" id="freshStillBirth" name="outcome" value="Fresh Still Birth"> Fresh Still Birth
+                <input type="radio" id="maceratedStillBirth" name="outcome" value="Macerated Still Birth"> Macerated Still Birth
+                <input type="radio" id="single" name="outcome" value="Single"> Single
+                <input type="radio" id="twinMultiple" name="outcome" value="Twin/ Multiple"> Twin/ Multiple
+                <input type="checkbox" id="delayedCordClamping"> Delayed Cord Clamping
+                <input type="radio" id="delayedCordClampingYes" name="delayedCordClampingStatus" value="Yes"> Yes
+                <input type="radio" id="delayedCordClampingNo" name="delayedCordClampingStatus" value="No"> No
+            </div>
+
+            <!-- Episiotomy -->
+            <div class="form-group">
+                <label>Episiotomy:</label>
+                <input type="radio" id="episiotomyNo" name="episiotomy" value="No"> No
+                <input type="radio" id="episiotomyYes" name="episiotomy" value="Yes"> Yes
+            </div>
+
+            <!-- AMTSL performed -->
+            <div class="form-group">
+                <label>AMTSL performed:</label>
+                <input type="radio" id="amtslNo" name="amtsl" value="No"> No
+                <input type="radio" id="amtslYes" name="amtsl" value="Yes"> Yes
+            </div>
+
+            <!-- Complications, if any -->
+            <div class="form-group">
+                <label>Complications, if any:</label>
+                <input type="checkbox" id="pph"> PPH
+                <input type="checkbox" id="sepsis"> Sepsis
+                <input type="checkbox" id="pe"> PE/E
+                <input type="checkbox" id="prolongedLabor"> Prolonged labor
+                <input type="checkbox" id="obstructedLabor"> Obstructed labor
+                <input type="checkbox" id="fetalDistress"> Fetal distress
+                <input type="checkbox" id="maternalDeath"> Maternal death
+                <input type="text" id="otherComplications" placeholder="Others (specify)">
+            </div>
+
+            <!-- PPIUCD Inserted -->
+            <div class="form-group">
+                <label>PPIUCD Inserted:</label>
+                <input type="radio" id="ppiucdYes" name="ppiucd" value="Yes"> Yes
+                <input type="radio" id="ppiucdNo" name="ppiucd" value="No"> No
+            </div>
+
+            <!-- BABY NOTES -->
+            <section class="baby-notes">
+                <h3>BABY NOTES</h3>
+
+                <!-- Sex of the baby -->
+                <div class="form-group">
+                    <label>Sex of the baby:</label>
+                    <input type="radio" id="male" name="sexOfBaby" value="Male"> Male
+                    <input type="radio" id="female" name="sexOfBaby" value="Female"> Female
+                </div>
+
+                <!-- Skin-to-skin contact done -->
+                <div class="form-group">
+                    <label>Skin-to-skin contact done:</label>
+                    <input type="radio" id="skinToSkinYes" name="skinToSkin" value="Yes"> Yes
+                    <input type="radio" id="skinToSkinNo" name="skinToSkin" value="No"> No
+                </div>
+
+                <!-- Birth weight -->
+                <div class="form-group">
+                    <label>Birth weight:</label>
+                    <input type="number" id="birthWeight"> in kgs
+                </div>
+
+                <!-- Preterm -->
+                <div class="form-group">
+                    <label>Preterm:</label>
+                    <input type="radio" id="pretermYes" name="preterm" value="Yes"> Yes
+                    <input type="radio" id="pretermNo" name="preterm" value="No"> No
+                </div>
+
+                <!-- Did the baby cry immediately after birth? -->
+                <div class="form-group">
+                    <label>Did the baby cry immediately after birth?</label>
+                    <input type="radio" id="cryYes" name="cry" value="Yes"> Yes
+                    <input type="radio" id="cryNo" name="cry" value="No"> No
+                </div>
+
+                <!-- Did the baby require resuscitation? -->
+                <div class="form-group">
+                    <label>Did the baby require resuscitation?</label>
+                    <input type="radio" id="resuscitationYes" name="resuscitation" value="Yes"> Yes
+                    <input type="radio" id="resuscitationNo" name="resuscitation" value="No"> No
+                </div>
+
+                <!-- Breastfeeding initiated -->
+                <div class="form-group">
+                    <label>Breastfeeding initiated:</label>
+                    <input type="radio" id="breastfeedingYes" name="breastfeeding" value="Yes"> Yes
+                    <input type="radio" id="breastfeedingNo" name="breastfeeding" value="No"> No
+                    <input type="text" id="timeOfInitiation" placeholder="Time of initiation">
+                </div>
+
+                <!-- Any congenital anomaly -->
+                <div class="form-group">
+                    <label>Any congenital anomaly (please specify):</label>
+                    <input type="text" id="congenitalAnomaly">
+                </div>
+
+                <!-- Any other complication -->
+                <div class="form-group">
+                    <label>Any other complication (please specify):</label>
+                    <input type="text" id="otherComplication">
+                </div>
+
+                <!-- Injection Vitamin K1 administered -->
+                <div class="form-group">
+                    <label>Injection Vitamin K1 administered:</label>
+                    <input type="radio" id="vitaminK1Yes" name="vitaminK1" value="Yes"> Yes
+                    <input type="radio" id="vitaminK1No" name="vitaminK1" value="No"> No
+                    <input type="text" id="vitaminK1Dose" placeholder="If yes, dose">
+                </div>
+
+                <!-- Vaccination done -->
+                <div class="form-group">
+                    <label>Vaccination done:</label>
+                    <input type="checkbox" id="bcg"> BCG
+                    <input type="checkbox" id="opv"> OPV
+                    <input type="checkbox" id="hepB"> Hep B
+                    <input type="text" id="temperatureOfBaby" placeholder="Temperature of baby">
+                </div>
+            </section>
+
+            <!-- Identification for Baby -->
+            <section class="identification-for-baby">
+                <h3>Identification for Baby</h3>
+                <!-- Will add fields as needed -->
+            </section>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="10.html" class="previous">&laquo; Previous</a>
+<a href="12.html" class="next">Next &raquo;</a>
+
+    <!--<script src="script.js"></script>-->
+</body>
+</html>

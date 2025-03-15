@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet - Page 4</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0 20px;
+    color: #333;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>OBSTETRIC NOTES (INTERVENTIONS BEFORE DELIVERY) - Page 4</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="maternityFormPage4">
+        <!-- Augmentation performed -->
+        <section class="augmentation-performed">
+            <h2>Augmentation Performed</h2>
+            <div class="form-group">
+                <label>Augmentation performed:</label>
+                <input type="radio" id="augmentationYes" name="augmentation" value="Yes"> Yes
+                <input type="radio" id="augmentationNo" name="augmentation" value="No"> No
+            </div>
+
+            <!-- If yes, please specify the indication for augmentation -->
+            <div class="form-group" id="augmentationIndicationGroup" style="display: none;">
+                <label>If yes, please specify the indication for augmentation:</label>
+                <textarea id="augmentationIndication"></textarea>
+            </div>
+        </section>
+
+        <!-- Name of Provider, Date, Signature -->
+        <section class="provider-details">
+            <div class="form-group">
+                <label>Name of Provider:</label>
+                <input type="text" id="providerName">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label>Signature:</label>
+                <input type="text" id="signature">
+            </div>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="3.html" class="previous">&laquo; Previous</a>
+<a href="5.html" class="next">Next &raquo;</a>
+
+    <!--<script src="script.js"></script>-->
+</body>
+</html>

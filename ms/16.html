@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Services Case Sheet - Page 16</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo, .logo2 {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0 20px;
+    color: #333;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<style>
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.previous:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.next:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>Discharge/ Referral/ LAMA/ Death Form - Page 16</h1>
+        <img src="logo2.png" alt="Logo 2" class="logo2">
+    </header>
+    <form id="dischargeReferralForm">
+        <!-- Discharge/ Referral/ LAMA/ Death Form -->
+        <section class="discharge-referral-form">
+            <h2>Discharge/ Referral/ LAMA/ Death Form (Tick (√) whichever applicable)</h2>
+
+            <!-- Facility Details -->
+            <div class="form-group">
+                <label>Name of Facility:</label>
+                <input type="text" id="facilityName">
+            </div>
+            <div class="form-group">
+                <label>Block:</label>
+                <input type="text" id="block">
+            </div>
+            <div class="form-group">
+                <label>District:</label>
+                <input type="text" id="district">
+            </div>
+            <div class="form-group">
+                <label>Name and signature of service provider:</label>
+                <input type="text" id="providerName">
+            </div>
+            <div class="form-group">
+                <label>Phone No:</label>
+                <input type="text" id="phoneNo">
+            </div>
+
+            <!-- Patient Details -->
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="name">
+            </div>
+            <div class="form-group">
+                <label>W/o or D/o:</label>
+                <input type="text" id="woDo">
+            </div>
+            <div class="form-group">
+                <label>Age (yrs):</label>
+                <input type="number" id="age">
+            </div>
+            <div class="form-group">
+                <label>MCTS No.:</label>
+                <input type="text" id="mctsNo">
+            </div>
+
+            <!-- Admission and Delivery Details -->
+            <div class="form-group">
+                <label>Date of admission:</label>
+                <input type="date" id="admissionDate">
+            </div>
+            <div class="form-group">
+                <label>Time of admission:</label>
+                <input type="time" id="admissionTime">
+            </div>
+            <div class="form-group">
+                <label>Date of discharge/referral:</label>
+                <input type="date" id="dischargeDate">
+            </div>
+            <div class="form-group">
+                <label>Time of discharge/referral:</label>
+                <input type="time" id="dischargeTime">
+            </div>
+            <div class="form-group">
+                <label>Date of delivery:</label>
+                <input type="date" id="deliveryDate">
+            </div>
+            <div class="form-group">
+                <label>Time of delivery:</label>
+                <input type="time" id="deliveryTime">
+            </div>
+            <div class="form-group">
+                <label>Delivery outcome:</label>
+                <input type="radio" id="liveBirth" name="deliveryOutcome" value="Live birth"> Live birth
+                <input type="radio" id="abortion" name="deliveryOutcome" value="Abortion"> Abortion
+                <input type="radio" id="freshStillBirth" name="deliveryOutcome" value="Fresh Still birth"> Fresh Still birth
+                <input type="radio" id="maceratedStillBirth" name="deliveryOutcome" value="Macerated Still birth"> Macerated Still birth
+                <input type="radio" id="twinsMultiple" name="deliveryOutcome" value="Twins/Multiple"> Twins/Multiple
+            </div>
+
+            <!-- Final Outcome -->
+            <div class="form-group">
+                <label>Final outcome:</label>
+                <input type="radio" id="discharge" name="finalOutcome" value="Discharge"> Discharge
+                <input type="radio" id="referredOut" name="finalOutcome" value="Referred out"> Referred out
+                <input type="radio" id="lama" name="finalOutcome" value="LAMA"> LAMA
+                <input type="radio" id="death" name="finalOutcome" value="Death"> Death
+                <input type="radio" id="abortionFinal" name="finalOutcome" value="Abortion"> Abortion
+            </div>
+
+            <!-- Discharge Summary -->
+            <div class="form-group">
+                <label>Condition of mother:</label>
+                <textarea id="conditionOfMother"></textarea>
+            </div>
+            <div class="form-group">
+                <label>FP option (if provided):</label>
+                <textarea id="fpOption"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Condition of baby:</label>
+                <textarea id="conditionOfBaby"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Sex of baby:</label>
+                <input type="radio" id="male" name="sexOfBaby" value="Male"> M
+                <input type="radio" id="female" name="sexOfBaby" value="Female"> F
+                <label>Birth weight (kgs):</label>
+                <input type="number" id="birthWeight">
+            </div>
+            <div class="form-group">
+                <label>Pre-term:</label>
+                <input type="radio" id="pretermYes" name="preterm" value="Yes"> Yes
+                <input type="radio" id="pretermNo" name="preterm" value="No"> No
+                <label>Inj. Vit K1:</label>
+                <input type="radio" id="vitK1Yes" name="vitK1" value="Yes"> Yes
+                <input type="radio" id="vitK1No" name="vitK1" value="No"> No
+            </div>
+            <div class="form-group">
+                <label>Immunization:</label>
+                <input type="checkbox" id="bcg"> BCG
+                <input type="checkbox" id="opv"> OPV
+                <input type="checkbox" id="hepatitisB"> Hepatitis B
+            </div>
+            <div class="form-group">
+                <label>Advice on discharge:</label>
+                <input type="checkbox" id="counsellingDangerSigns"> Counselling on danger signs for mother and baby
+                <input type="checkbox" id="restNutrition"> Rest, nutrition and plenty of fluids
+                <input type="checkbox" id="tabIron"> Tab iron
+                <input type="checkbox" id="tabCalcium"> Tab calcium
+            </div>
+            <div class="form-group">
+                <label>Treatment given:</label>
+                <textarea id="treatmentGiven"></textarea>
+            </div>
+
+            <!-- Referral Summary -->
+            <div class="form-group">
+                <label>Reason for referral:</label>
+                <textarea id="reasonForReferral"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Facility name (referred to):</label>
+                <input type="text" id="facilityNameReferred">
+            </div>
+            <div class="form-group">
+                <label>Treatment given:</label>
+                <textarea id="treatmentGivenReferral"></textarea>
+            </div>
+
+            <!-- Follow-up date -->
+            <div class="form-group">
+                <label>Follow-up date:</label>
+                <input type="date" id="followUpDate">
+            </div>
+
+            <!-- Notes on Discharge/ Referral/ Death -->
+            <div class="form-group">
+                <label>Notes on Discharge/ Referral/ Death:</label>
+                <textarea id="notesOnDischarge"></textarea>
+            </div>
+        </section>
+
+        <button type="submit">Submit</button>
+    </form>
+<a href="15.html" class="previous">&laquo; Previous</a>
+    <!--<script src="script.js"></script>-->
+</body>
+</html>
