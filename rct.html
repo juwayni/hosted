@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Respiratory System Case Taking Tool</title>
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #f39c12;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #9b59b6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 { font-size: 28px; margin-bottom: 10px; }
+        .subtitle { font-style: italic; margin-bottom: 15px; }
+        .form-container { padding: 30px; }
+        .progress-container { margin-bottom: 30px; }
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .section-header {
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-content { padding: 20px; display: none; }
+        .section.active .section-content { display: block; }
+        .section.active { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background: #fafafa;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(142,68,173,0.2);
+        }
+        .checkbox-group label, .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .checkbox-group input, .radio-group input {
+            margin-right: 10px;
+            width: auto;
+        }
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-prev { background: #e0e0e0; color: #555; }
+        .btn-next { background: var(--primary-color); color: white; }
+        .btn-submit { background: var(--success-color); color: white; }
+        .section-badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            background: rgba(255,255,255,0.3);
+        }
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--info-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            cursor: help;
+        }
+        .info-tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%; left: 50%; transform: translateX(-50%);
+            padding: 10px; background: #333; color: white; border-radius: 5px; width: 220px; z-index: 1; font-size: 14px; font-weight: normal;
+        }
+        @media print {
+            .form-container, .btn-container, .progress-container { display: none; }
+            .section-content { display: block !important; }
+            header { background: none; color: black; padding: 10px 0; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced Respiratory System Case Taking Tool</h1>
+            <p class="subtitle">Comprehensive assessment for respiratory disorders</p>
+            <p class="subtitle">by Ghazali</p>
+        </header>
+        <div class="form-container">
+            <div class="progress-container">
+                <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+                <div class="progress-text">
+                    <span id="currentSection">Patient Details</span>
+                    <span id="completionStatus">0% Complete</span>
+                </div>
+            </div>
+            <form id="respiratoryForm">
+                <!-- SECTION 1: PATIENT DETAILS -->
+                <div class="section active" id="section1">
+                    <div class="section-header">
+                        <h2>Patient Details</h2>
+                        <span class="section-badge incomplete">Incomplete</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label>Name <span class="text-danger">*</span></label>
+                                    <input type="text" name="name" required>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label>Age <span class="text-danger">*</span></label>
+                                    <input type="number" name="age" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label>Sex</label>
+                                    <select name="sex">
+                                        <option value="">Select</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label>Occupation</label>
+                                    <input type="text" name="occupation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea name="address" rows="2"></textarea>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-next" onclick="nextSection(1)">Next: Complaints</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- SECTION 2: PRESENTING COMPLAINTS -->
+                <div class="section" id="section2">
+                    <div class="section-header"><h2>Presenting Complaints</h2><span class="section-badge incomplete">Incomplete</span></div>
+                    <div class="section-content">
+                        <!-- Cough -->
+                        <div class="form-group"><label>Cough with Expectoration</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="cough_paroxysmal">Paroxysmal</label>
+                                <label><input type="checkbox" name="cough_dry">Dry</label>
+                                <label><input type="checkbox" name="cough_productive">Productive</label>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col"><label>Duration</label><input type="text" name="cough_duration"></div>
+                                <div class="form-col"><label>Onset</label><input type="text" name="cough_onset"></div>
+                            </div>
+                            <div class="form-group"><label>Aggravating/Relieving Factors</label><textarea name="cough_factors"></textarea></div>
+                        </div>
+                        <!-- Sputum -->
+                        <div class="form-group"><label>Sputum</label>
+                            <div class="form-row">
+                                <div class="form-col"><label>Quantity</label><input type="text" name="sputum_quantity"></div>
+                                <div class="form-col"><label>Colour & Odour</label><input type="text" name="sputum_colour"></div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="sputum_mucoid">Mucoid</label>
+                                <label><input type="checkbox" name="sputum_serous">Serous</label>
+                                <label><input type="checkbox" name="sputum_purulent">Purulent</label>
+                                <label><input type="checkbox" name="sputum_mucopurulent">Mucopurulent</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="sputum_blood">With Blood</label>
+                                <label><input type="checkbox" name="sputum_noblood">Without Blood</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="sputum_postural">Postural Variation</label>
+                                <label><input type="checkbox" name="sputum_diurnal">Diurnal Variation</label>
+                            </div>
+                        </div>
+                        <!-- Hemoptysis -->
+                        <div class="form-group"><label>Hemoptysis</label>
+                            <div class="form-row">
+                                <div class="form-col"><label>Duration</label><input type="text" name="hemo_duration"></div>
+                                <div class="form-col"><label>Episodes</label><input type="number" name="hemo_episodes"></div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="hemo_type" value="fresh">Fresh Blood</label>
+                                <label><input type="radio" name="hemo_type" value="altered">Altered Blood</label>
+                            </div>
+                            <div class="form-group"><label>Associated with:</label><input type="text" name="hemo_assoc"></div>
+                        </div>
+                        <!-- Breathlessness -->
+                        <div class="form-group"><label>Breathlessness</label>
+                            <div class="form-row">
+                                <div class="form-col"><label>Duration</label><input type="text" name="breath_duration"></div>
+                                <div class="form-col"><label>Grade</label><input type="number" name="breath_grade" min="1" max="5"></div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="breath_pnd">PND</label>
+                                <label><input type="checkbox" name="breath_orthopnea">Orthopnea</label>
+                            </div>
+                        </div>
+                        <!-- Chest Pain -->
+                        <div class="form-group"><label>Chest Pain</label>
+                            <div class="form-row">
+                                <div class="form-col"><label>Duration</label><input type="text" name="pain_duration"></div>
+                                <div class="form-col"><label>Site</label><input type="text" name="pain_site"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col"><label>Nature</label><select name="pain_nature"><option>Pricking</option><option>Stabbing</option><option>Crushing</option></select></div>
+                                <div class="form-col"><label>Severity</label><input type="number" name="pain_severity" min="1" max="10"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col"><label>Radiation</label><input type="text" name="pain_radiation"></div>
+                                <div class="form-col"><label>Postural Variation</label><input type="text" name="pain_posture"></div>
+                            </div>
+                            <div class="form-group"><label>Associated Factors</label><textarea name="pain_assoc"></textarea></div>
+                        </div>
+                        <div class="btn-container">
+                            <button type="button" class="btn-prev" onclick="prevSection(2)">Previous</button>
+                            <button type="button" class="btn-next" onclick="nextSection(2)">Next: Negative History</button>
+                        </div>
+                    </div>
+                </div>
+                
+<!-- SECTION 3: ASSOCIATED SYMPTOMS -->
+<div class="section" id="section3">
+    <div class="section-header">
+        <h2>Associated Symptoms</h2>
+        <span class="section-badge incomplete">Incomplete</span>
+    </div>
+    <div class="section-content">
+        <div class="alert alert-info">
+            <p>Document any additional symptoms associated with the respiratory condition.</p>
+        </div>
+        <!-- General Symptoms -->
+        <div class="form-group">
+            <label>General Symptoms</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="assoc_fever">Fever</label>
+                <label><input type="checkbox" name="assoc_weight_loss">Weight Loss</label>
+                <label><input type="checkbox" name="assoc_night_sweats">Night Sweats</label>
+                <label><input type="checkbox" name="assoc_fatigue">Fatigue</label>
+                <label><input type="checkbox" name="assoc_appetite_loss">Loss of Appetite</label>
+            </div>
+        </div>
+        <!-- Respiratory Symptoms -->
+        <div class="form-group">
+            <label>Respiratory Symptoms</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="assoc_chest_pain">Chest Pain</label>
+                <label><input type="checkbox" name="assoc_palpitations">Palpitations</label>
+                <label><input type="checkbox" name="assoc_wheezing">Wheezing</label>
+                <label><input type="checkbox" name="assoc_hemoptysis">Hemoptysis</label>
+                <label><input type="checkbox" name="assoc_dyspnea">Dyspnea</label>
+            </div>
+        </div>
+        <!-- Systemic Symptoms -->
+        <div class="form-group">
+            <label>Systemic Symptoms</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="assoc_swelling">Swelling (Pedal/Peripheral)</label>
+                <label><input type="checkbox" name="assoc_cyanosis">Cyanosis</label>
+                <label><input type="checkbox" name="assoc_clubbing">Clubbing</label>
+                <label><input type="checkbox" name="assoc_lymphadenopathy">Lymphadenopathy</label>
+            </div>
+        </div>
+        <!-- Other Symptoms -->
+        <div class="form-group">
+            <label>Other Symptoms</label>
+            <textarea name="assoc_other_symptoms" placeholder="Describe any other symptoms..."></textarea>
+        </div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(3)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(3)">Next: Negative History</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- SECTION 4: NEGATIVE HISTORY -->
+<div class="section" id="section4">
+    <div class="section-header"><h2>Negative History</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <!-- Wheeze & Halitosis -->
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="neg_wheeze">Wheeze (Duration/Variation)</label>
+            <label><input type="checkbox" name="neg_halitosis">Halitosis</label>
+        </div>
+        <!-- TB Symptoms -->
+        <div><strong>TB Symptoms:</strong>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="tb_fever">Fever (Evening rise)</label>
+                <label><input type="checkbox" name="tb_weight">Weight loss</label>
+                <label><input type="checkbox" name="tb_appetite">Appetite loss</label>
+                <label><input type="checkbox" name="tb_sweats">Night sweats</label>
+            </div>
+        </div>
+        <!-- Cardiac -->
+        <div><strong>Cardiac Involvement:</strong>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="card_pedal">Pedal edema</label>
+                <label><input type="checkbox" name="card_abd">Abdominal distension</label>
+                <label><input type="checkbox" name="card_rhyp">Right hypochondrial pain</label>
+                <label><input type="checkbox" name="card_face">Puffiness of face</label>
+                <label><input type="checkbox" name="card_palpitations">Palpitations</label>
+                <label><input type="checkbox" name="card_syncope">Syncope</label>
+                <label><input type="checkbox" name="card_oliguria">Oliguria</label>
+            </div>
+        </div>
+        <!-- Malignancy -->
+        <div><strong>Malignancy Symptoms:</strong>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="mal_hoarseness">Hoarseness</label>
+                <label><input type="checkbox" name="mal_dysphagia">Dysphagia</label>
+                <div class="form-group"><label>Dysphagia Details</label><textarea name="mal_dysphagia_details"></textarea></div>
+                <label><input type="checkbox" name="mal_appetite">Loss of appetite</label>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(4)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(4)">Next: Past History</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 5: PAST HISTORY -->
+<div class="section" id="section5">
+    <div class="section-header"><h2>Past History</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="past_similar">Previous similar episodes</label>
+            <label><input type="checkbox" name="past_htdm">HT/DM</label>
+            <label><input type="checkbox" name="past_tb">TB</label>
+        </div>
+        <div class="form-group"><label>TB Details</label><textarea name="past_tb_details"></textarea></div>
+        <div class="form-group"><label>Pneumonia History</label><textarea name="past_pneumonia"></textarea></div>
+        <div class="form-group"><label>PE Exposure History</label><textarea name="past_pe"></textarea></div>
+        <div class="form-group"><label>Past Infections (Measles, Whooping cough, etc.)</label><textarea name="past_infections"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(5)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(5)">Next: Family History</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 6: FAMILY HISTORY -->
+<div class="section" id="section6">
+    <div class="section-header"><h2>Family History</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <div class="form-group"><label>Family Conditions (TB, allergies, infertility)</label><textarea name="family_history"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(6)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(6)">Next: Personal History</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 7: PERSONAL HISTORY -->
+<div class="section" id="section7">
+    <div class="section-header"><h2>Personal History</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <div class="form-group"><label>Smoking</label><input type="text" name="hist_smoking"></div>
+        <div class="form-group"><label>Alcohol</label><input type="text" name="hist_alcohol"></div>
+        <div class="form-group"><label>Diet</label><input type="text" name="hist_diet"></div>
+        <div class="form-group"><label>Occupational/STD Exposure</label><textarea name="hist_exposure"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(7)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(7)">Next: Treatment History</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 8: TREATMENT HISTORY -->
+<div class="section" id="section8">
+    <div class="section-header"><h2>Treatment History</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <div class="form-group"><label>Previous Treatments</label><textarea name="treatment_history"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(8)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(8)">Next: Summary</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 9: SUMMARY & SYSTEM ANALYSIS -->
+<div class="section" id="section9">
+    <div class="section-header"><h2>Summary & Analysis</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <div class="form-group"><label>Case Summary</label><textarea name="case_summary"></textarea></div>
+        <div class="form-group"><label>RS Classification</label><textarea name="rs_classification" placeholder="Acute/Chronic, Rt/Lt/Both, Parenchyma/Pleura/Airway, etc."></textarea></div>
+        <div class="form-group"><label>Obstructive Disease Features</label><textarea name="obs_features"></textarea></div>
+        <div class="form-group"><label>Restrictive Disease Features</label><textarea name="rest_features"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(9)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(9)">Next: Exam</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 10: EXAMINATION -->
+<div class="section" id="section10">
+    <div class="section-header"><h2>Examination</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <!-- General -->
+        <div><strong>General Examination:</strong>
+            <div class="checkbox-group">
+                <label><input type="checkbox">Comfortable</label>
+                <label><input type="checkbox">Conscious & Oriented</label>
+                <label><input type="checkbox">Febrile</label>
+                <label><input type="checkbox">Pallor</label>
+                <label><input type="checkbox">Icterus</label>
+                <label><input type="checkbox">Clubbing</label>
+                <label><input type="checkbox">Cyanosis</label>
+                <label><input type="checkbox">Pedal Edema</label>
+            </div>
+        </div>
+        <!-- Vital signs -->
+        <div class="form-group"><label>Pulse Rate</label><input type="text" name="v_pulse"></div>
+        <div class="form-group"><label>Blood Pressure</label><input type="text" name="v_bp"></div>
+        <div class="form-group"><label>Respiratory Rate</label><input type="text" name="v_resp"></div>
+        <div class="form-group"><label>Temperature</label><input type="text" name="v_temp"></div>
+        <div class="form-group"><label>JVP</label><input type="text" name="v_jvp"></div>
+        <!-- Inspection -->
+        <div class="form-group"><label>Inspection Findings</label><textarea name="exam_inspection"></textarea></div>
+        <!-- Palpation -->
+        <div class="form-group"><label>Palpation Findings</label><textarea name="exam_palpation"></textarea></div>
+        <!-- Percussion -->
+        <div class="form-group"><label>Percussion Findings</label><textarea name="exam_percussion"></textarea></div>
+        <!-- Auscultation -->
+        <div class="form-group"><label>Auscultation Findings</label><textarea name="exam_auscultation"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(10)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(10)">Next: Other Systems</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 11: OTHER SYSTEMS -->
+<div class="section" id="section11">
+    <div class="section-header"><h2>Other Systems</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <div class="form-group"><label>CVS Findings</label><textarea name="sys_cvs"></textarea></div>
+        <div class="form-group"><label>Abdominal Findings</label><textarea name="sys_abdomen"></textarea></div>
+        <div class="form-group"><label>CNS Findings</label><textarea name="sys_cns"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(11)">Previous</button>
+            <button type="button" class="btn-next" onclick="nextSection(11)">Next: Diagnosis</button>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 12: DIAGNOSIS -->
+<div class="section" id="section12">
+    <div class="section-header"><h2>Diagnosis</h2><span class="section-badge incomplete">Incomplete</span></div>
+    <div class="section-content">
+        <div class="form-group"><label>Final Diagnosis</label><textarea name="final_diagnosis"></textarea></div>
+        <div class="btn-container">
+            <button type="button" class="btn-prev" onclick="prevSection(12)">Previous</button>
+            <button type="submit" class="btn-submit">Submit Case</button>
+        </div>
+    </div>
+</div>
+                <script>
+                    let currentSection = 1;
+                    const totalSections = 12;
+
+                    function showSection(sectionNumber) {
+                        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                        document.getElementById(`section${sectionNumber}`).classList.add('active');
+                        updateProgress();
+                    }
+
+                    function nextSection(current) {
+                        if (validateSection(current)) {
+                            currentSection = Math.min(totalSections, current + 1);
+                            showSection(currentSection);
+                        }
+                    }
+
+                    function prevSection(current) {
+                        currentSection = Math.max(1, current - 1);
+                        showSection(currentSection);
+                    }
+
+                    function updateProgress() {
+                        const progress = (currentSection / totalSections) * 100;
+                        document.getElementById('progressBar').style.width = `${progress}%`;
+                        document.getElementById('currentSection').textContent = 
+                            document.querySelector(`#section${currentSection} h2`).textContent;
+                        document.getElementById('completionStatus').textContent = 
+                            `${Math.round(progress)}% Complete`;
+                    }
+
+                    function validateSection(sectionNumber) {
+                        // Add validation logic here
+                        return true;
+                    }
+                    
+        document.querySelectorAll('.section-header').forEach((header, i) => {
+            header.addEventListener('click', () => {
+                currentSection = i + 1;
+                showSection(currentSection);
+            });
+        });
+                </script>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
